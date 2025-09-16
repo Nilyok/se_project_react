@@ -1,0 +1,18 @@
+.weather-card {
+  width: 100%;
+  height: px; /* adjust to match Figma */
+  /* border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  position: relative; */
+}
+
+/* .weather-card__temp {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 8px 16px;
+  border-radius: 8px;
+} */

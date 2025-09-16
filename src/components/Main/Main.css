@@ -1,0 +1,11 @@
+import weatherData from '../App.jsx';
+
+function Main({ weatherData }) {
+  return (
+    <main>
+      <WeatherCard temperature={weatherData.temp} />
+    </main>
+  );
+}
+
+export default Main;
