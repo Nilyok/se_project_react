@@ -1,0 +1,23 @@
+.footer {
+  width: 1358px;
+  margin: 0 auto; /* center align container */
+  display: flex;
+  justify-content: space-between; /* push items to edges */
+  align-items: flex-end; /* bottom align text */
+  padding-bottom: 24px; /* 24px gap from bottom */
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 1);
+
+}
+
+.footer__left {
+  text-align: left;
+}
+
+.footer__right {
+  text-align: right;
+}
+

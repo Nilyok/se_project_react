@@ -1,0 +1,145 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+
+.modal__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* only darkens, doesn’t block */
+  z-index: 1;
+}
+
+.modal__content {
+  position: relative;
+  z-index: 2; /* content above overlay */
+  width: 496px;
+  height: 436px;
+  background: #fff;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 28px;
+}
+
+
+.modal__title {
+  font-family: var(--font-main, "Cabinet Grotesk", Arial, sans-serif);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 24px;
+}
+
+.modal__close {
+  position: absolute;
+  top: 22px;   /* padding from top */
+  right: 30px; /* padding from right */
+  width: 16px;
+  height: 16px;
+  border: none;
+  border-radius: 50%; /* optional, remove if Figma shows square */
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.modal__close-icon {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+
+.modal__label {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 24px;
+}
+
+.modal__label input {
+  width: 440px;
+  margin-top: 8px;
+  border: none;
+  border-bottom: 1px solid #000;
+  padding: 4px 0;
+  font-family: inherit;
+}
+
+.modal__fieldset {
+  border: none;
+  padding: 0;
+  margin-bottom: 32px;
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal__fieldset legend {
+  margin-bottom: 12px; /* gap between legend and "Hot" */
+}
+
+.modal__submit {
+  width: 124px;
+  height: 36px;
+  border-radius: 4px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Typography */
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+
+  background: rgba(0, 0, 0, 1); /* ✅ Base (enabled) */
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.modal__fieldset label {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* space between radio and text */
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* Checked → darker text */
+.modal__fieldset input[type="radio"]:checked + span {
+  color: rgba(0, 0, 0, 1);
+}
+
+/* Hover only applies if enabled */
+.modal__submit:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.6); /* ✅ Hover */
+}
+
+.modal__submit:disabled {
+  background: rgba(0, 0, 0, 0.3); /* ✅ Disabled */
+  cursor: not-allowed;
+}
+

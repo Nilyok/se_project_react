@@ -1,5 +1,77 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;        /* adds left & right spacing */
+  height: 80px;           /* adjust per Figma */
+  max-width: 1440px;      /* keeps aligned with global width */
+  margin: 0 auto;         /* center inside root */
+  width: 100%;
+}
+
+
+
+/* Left side: logo + date/location */
+.header__left {
+  display: flex;
+  align-items: center;
+  gap: 24px; /* space between logo and date/location (113px - 89px = ~24px) */
+}
+
+.header__logo {
+  width: 89px;
+  height: 40px;
+}
+
+.header__date-location {
+  font-size: 16px;
+  line-height: 24px;
+  color: #000;
+}
+
+/* Right side: button + user info */
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: 24px; /* spacing between button, username, avatar */
+}
+
+.header__add-btn {
+  font-size: 16px;
+  line-height: 24px;
+  color: #000;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.header__user {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* spacing between username and avatar */
+}
+
+.header__username {
+  font-size: 16px;
+  line-height: 25px;
+  color: #000;
+}
+
 .header__avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  border: 1px solid #000;
+  object-fit: cover;
 }
+
+.header__date-location,
+.header__add-btn,
+.header__username {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;   /* bold */
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0;
+}
+

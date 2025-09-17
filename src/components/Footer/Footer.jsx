@@ -1,10 +1,10 @@
-import "../Footer/Footer.css";
+import "./Footer.css";
 
 function Footer() {
   return (
     <footer className="footer">
-      <p className="footer__left">Developerd by Name Surname</p>
-        <p className="footer__right">2022</p>
+      <span className="footer__left">Developed by Name Surname</span>
+      <span className="footer__right">2022</span>
     </footer>
   );
 }

@@ -1,11 +1,31 @@
-import weatherData from '../App.jsx';
-
-function Main({ weatherData }) {
-  return (
-    <main>
-      <WeatherCard temperature={weatherData.temp} />
-    </main>
-  );
+.main {
+  width: 1360px;
+  margin: 0 auto 85px;   /* removed top margin, kept bottom */
+  box-sizing: border-box;
 }
 
-export default Main;
+
+.main__subtitle {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%; /* matches Figma */
+  margin: 40px 0 40px 0; /* 40px gap below before clothing cards */
+  color: #000; /* adjust if needed */
+}
+
+.main__clothing-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+  gap: 20px; /* space between cards */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.main__clothing-item {
+  display: flex;
+  justify-content: center;
+}
+
+

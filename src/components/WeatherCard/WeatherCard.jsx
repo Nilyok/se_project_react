@@ -1,10 +1,11 @@
-import "../WeatherCard/WeatherCard.css";
+import "./WeatherCard.css";
 import DayCloudy from "../../images/weather/WeatherCard-Day-Cloudy.svg";
 import DayFog from "../../images/weather/WeatherCard-Day-Fog.svg";
 import DayRain from "../../images/weather/WeatherCard-Day-Rain.svg";
 import DaySnow from "../../images/weather/WeatherCard-Day-Snow.svg";
 import DayStorm from "../../images/weather/WeatherCard-Day-Storm.svg";
 import DaySunny from "../../images/weather/WeatherCard-Day-Sunny.svg";
+
 
 import NightCloudy from "../../images/weather/WeatherCard-Night-Cloudy.svg";
 import NightFog from "../../images/weather/WeatherCard-Night-Fog.svg";
@@ -14,38 +15,42 @@ import NightStorm from "../../images/weather/WeatherCard-Night-Storm.svg";
 import NightSunny from "../../images/weather/WeatherCard-Night-Sunny.svg";
 
 
-export const weatherImages = {
-  DayCloudy,
-  DayFog,
-  DayRain,
-  DaySnow,
-  DayStorm,
-  DaySunny,
-  NightCloudy,
-  NightFog,
-  NightRain,
-  NightSnow,
-  NightStorm,
-  NightSunny,
+// Map by timeOfDay + condition from OpenWeather API
+const weatherImages = {
+Day: {
+Clear: DaySunny,
+Clouds: DayCloudy,
+Rain: DayRain,
+Snow: DaySnow,
+Thunderstorm: DayStorm,
+Fog: DayFog,
+},
+Night: {
+Clear: NightSunny,
+Clouds: NightCloudy,
+Rain: NightRain,
+Snow: NightSnow,
+Thunderstorm: NightStorm,
+Fog: NightFog,
+},
 };
 
 
-function WeatherCard({ temperature, condition = "Sunny", timeOfDay = "Day" }) {
-    const key = `${timeOfDay}${condition}`;
-    const backgroundImage = weatherImages[key];
-    
-    return (
-        <section
-        className="weather-card"
-        style={{
-            backgroundImage: `url(${backgroundImage})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-        }}
-        >
-        <p className="weather-card__temp">{temperature}°F</p>
-        </section>
-    );
-}
-export default WeatherCard;
+function WeatherCard({ temperature, condition, timeOfDay }) {
+const imageSrc = weatherImages[timeOfDay]?.[condition] || DaySunny; // fallback
 
+
+return (
+<section className="weather-card">
+<img
+src={imageSrc}
+alt={`${condition} ${timeOfDay}`}
+className="weather-card__background"
+/>
+<p className="weather-card__temp">{temperature}°F</p>
+</section>
+);
+}
+
+
+export default WeatherCard;

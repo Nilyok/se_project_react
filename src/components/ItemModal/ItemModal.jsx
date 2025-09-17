@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import "./ItemModal.css";
+import closeIcon from "../../images/Preview-Close.svg"; 
 
 function ItemModal({ isOpen, onClose, card }) {
   // Close on ESC
@@ -36,7 +37,7 @@ function ItemModal({ isOpen, onClose, card }) {
           className="modal__close"
           onClick={onClose}
         >
-          ×
+          <img src={closeIcon} alt="Close" className="modal__close-icon" />
         </button>
 
         <img
