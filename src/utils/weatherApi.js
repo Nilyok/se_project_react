@@ -1,6 +1,8 @@
 import { APIkey, latitude, longitude } from "./constants";
 
-// fetch weather data from OpenWeather API
+/* -------------------
+   Fetch Weather Data
+------------------- */
 export const getWeather = () => {
   return fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
@@ -12,20 +14,22 @@ export const getWeather = () => {
       return res.json();
     })
     .then((data) => {
-      const temperature = Math.round(data.main.temp); // °F
+      const temperature = Math.round(data.main.temp); 
       const city = data.name;
 
       return {
         temp: temperature,
         city,
         type: getWeatherCondition(temperature),
-        condition: data.weather[0].main, // e.g., Clear, Clouds, Rain
+        condition: data.weather[0].main, 
         timeOfDay: data.weather[0].icon.includes("d") ? "Day" : "Night",
       };
     });
 };
 
-// classify weather type by temperature
+/* -------------------
+   Classify Weather
+------------------- */
 export const getWeatherCondition = (temp) => {
   if (temp >= 86) {
     return "hot";

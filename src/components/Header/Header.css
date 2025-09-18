@@ -1,21 +1,35 @@
+/* -------------------
+   Header Container
+------------------- */
+.header-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10; /* stays above weather card */
+}
+
+/* -------------------
+   Header Layout
+------------------- */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 40px;        /* adds left & right spacing */
-  height: 80px;           /* adjust per Figma */
-  max-width: 1440px;      /* keeps aligned with global width */
-  margin: 0 auto;         /* center inside root */
+  padding: 32px 40px 0;
+  height: 40px; /* per Figma */
+  max-width: 1440px;
+  margin: 0 auto;
   width: 100%;
 }
 
-
-
-/* Left side: logo + date/location */
+/* -------------------
+   Left Section (logo + date)
+------------------- */
 .header__left {
   display: flex;
   align-items: center;
-  gap: 24px; /* space between logo and date/location (113px - 89px = ~24px) */
+  gap: 24px;
 }
 
 .header__logo {
@@ -23,17 +37,27 @@
   height: 40px;
 }
 
-.header__date-location {
-  font-size: 16px;
-  line-height: 24px;
-  color: #000;
+.header__logo-block {
+  display: flex;
+  align-items: center;
+  gap: 24px;
 }
 
-/* Right side: button + user info */
+.header__date-location {
+  font-size: 20px;
+  line-height: 24px;
+  color: #000;
+  padding-top: 11px;
+}
+
+/* -------------------
+   Right Section (button + user info)
+------------------- */
 .header__right {
   display: flex;
   align-items: center;
-  gap: 24px; /* spacing between button, username, avatar */
+  gap: 24px;
+  padding-top: 11px;
 }
 
 .header__add-btn {
@@ -48,7 +72,7 @@
 .header__user {
   display: flex;
   align-items: center;
-  gap: 12px; /* spacing between username and avatar */
+  gap: 12px;
 }
 
 .header__username {
@@ -65,13 +89,148 @@
   object-fit: cover;
 }
 
+/* Shared text styles */
 .header__date-location,
 .header__add-btn,
 .header__username {
   font-family: "Cabinet Grotesk", Arial, sans-serif;
-  font-weight: 700;   /* bold */
+  font-weight: 700;
   font-size: 20px;
   line-height: 24px;
-  letter-spacing: 0;
 }
 
+/* -------------------
+   Mobile Layout
+------------------- */
+.header__mobile-btn {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    padding-bottom: 16px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 18px 16px 0;
+    margin-bottom: 40px;
+    gap: 0;
+    position: relative;
+  }
+
+  .header__logo {
+    padding-top: 18px;
+  }
+
+  .header__left {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header__mobile-btn {
+    display: block;
+    width: 44px;
+    height: 44px;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    position: absolute;
+    top: 18px;
+    right: 16px;
+  }
+
+  .header__date-location {
+    align-self: flex-end;
+    font-size: 20px;
+    margin-bottom: 16px;
+    text-align: right;
+  }
+
+  .header__right {
+    display: none;
+  }
+
+  /* -------------------
+     Popup
+  ------------------- */
+  .header__popup {
+    position: absolute;
+    top: 18px;
+    left: 16px;
+    width: 343px;
+    height: 208px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    z-index: 1000;
+  }
+
+  .header__popup-line {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .header__popup-username {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .header__popup-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #000;
+    object-fit: cover;
+  }
+
+  .header__popup-add-btn {
+    font-size: 20px;
+    font-weight: 700;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+
+  .header__overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .header__popup-close {
+    position: absolute;
+    top: 11px;
+    right: 11px;
+    width: 21px;
+    height: 21px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .header__popup-close img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .header__popup-close:hover {
+    opacity: 0.6;
+  }
+}

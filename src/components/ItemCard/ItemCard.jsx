@@ -1,6 +1,9 @@
 import "./ItemCard.css";
 
 function ItemCard({ item, onCardClick }) {
+  /* -------------------
+     Render
+  ------------------- */
   return (
     <div className="item-card" onClick={() => onCardClick(item)}>
       <img

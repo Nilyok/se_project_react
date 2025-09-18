@@ -1,50 +1,83 @@
+/* -------------------
+   Modal Content (Preview)
+------------------- */
 .modal__content_type_preview {
   width: 498px;
   height: 610px;
   border-radius: 20px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   background: #fff;
-
-  /* Remove default padding to eliminate gap */
   padding: 0;
-
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* ensures content doesn't spill */
+  overflow: hidden;
+  position: absolute;
 }
 
-/* Image takes the top, 1:1 ratio */
+/* -------------------
+   Image
+------------------- */
 .modal__image {
   width: 100%;
   height: 498px;
-  object-fit: cover; /* crop if needed, no distortion */
+  object-fit: cover;
   display: block;
 }
 
-/* Caption container */
+/* -------------------
+   Caption
+------------------- */
 .modal__caption {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;   /* left-align */
-  padding: 16px 28px 28px;   /* space inside, matches figma margins */
+  align-items: flex-start;
+  padding: 16px 28px 28px;
   box-sizing: border-box;
 }
 
-/* Card name (first line) */
-.modal__title {
-  font-family: "Cabinet Grotesk", Arial, sans-serif;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 24px;
-  margin: 0 0 16px 0;   /* 16px gap to weather text */
-}
-
-/* Weather text */
+.modal__title,
 .modal__weather {
   font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
   margin: 0;
+}
+
+.modal__title {
+  margin-bottom: 16px;
+}
+
+/* -------------------
+   Mobile
+------------------- */
+@media (max-width: 768px) {
+  .modal__content_type_preview {
+    width: 343px;
+    max-height: 90vh;   
+    height: auto;     
+    max-height: calc(100vh - 200px); 
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal__image {
+    flex: 0 0 auto;
+    width: 100%;
+    max-height: 60vh;   /* prevents image from forcing modal down */
+    height: auto;
+    object-fit: cover;
+  }
+
+  .modal__caption {
+    padding: 20px;
+  }
+
+  .modal__close-icon {
+    width: 21px;
+    height: 21px;
+    content: url("../../images/Mobile-Close-Button.svg");
+  }
 }
 

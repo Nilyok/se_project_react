@@ -1,6 +1,6 @@
-/* -----------------------------------
+/* ===================================
    Fonts
------------------------------------ */
+=================================== */
 @font-face {
   font-family: "Cabinet Grotesk";
   src: url("./assets/fonts/CabinetGrotesk/CabinetGrotesk-Bold.woff2") format("woff2");
@@ -15,9 +15,9 @@
   font-style: normal;
 }
 
-/* -----------------------------------
+/* ===================================
    Root Variables
------------------------------------ */
+=================================== */
 :root {
   --font-main: "Cabinet Grotesk", Arial, sans-serif;
   --color-primary: #000;
@@ -25,16 +25,18 @@
   --color-bg: #f5f5f5;
 }
 
-/* -----------------------------------
+/* ===================================
    Reset
------------------------------------ */
+=================================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -59,9 +61,9 @@ button {
   cursor: pointer;
 }
 
-/* -----------------------------------
+/* ===================================
    Global Layout
------------------------------------ */
+=================================== */
 body {
   font-family: var(--font-main);
   background: var(--color-bg);
@@ -69,7 +71,7 @@ body {
 
 #root {
   width: 100%;
-  max-width: 1440px;  /* Figma global width */
+  max-width: 1440px; 
   margin: 0 auto;
   min-height: 100vh;
   display: flex;
@@ -86,40 +88,56 @@ body {
   flex: 1;
 }
 
-.footer {
-  margin-top: 24px;
+/* -------------------
+   Modal Overlay
+------------------- */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 2000;
 }
 
-/* -----------------------------------
+.modal_is-opened {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+.modal__content_type_preview {
+  margin: 0; 
+}
+
+
+/* ===================================
    Responsive Layout
------------------------------------ */
-
-/* Tablet */
-@media (max-width: 1024px) {
-  .main {
-    max-width: 100%;
-    padding: 0 20px;
-    margin-bottom: 60px;
-  }
-}
+=================================== */
 
 /* Mobile */
 @media (max-width: 768px) {
   .main {
-    padding: 0 12px;
     margin-bottom: 40px;
+  }
+
+  body {
+    font-size: 20px; 
   }
 
   .main__clothing-list {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* 2 per row */
+    grid-template-columns: 1fr 1fr;
     gap: 16px;
   }
-}
 
-/* Extra Small (phones < 480px) */
-@media (max-width: 480px) {
-  .main__clothing-list {
-    grid-template-columns: 1fr; /* stack items */
+  .main__subtitle {
+    font-size: 16px;
+    line-height: 20px;
   }
+
+  
 }

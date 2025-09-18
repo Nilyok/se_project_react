@@ -1,3 +1,6 @@
+/* -------------------
+   Modal Base
+------------------- */
 .modal {
   position: fixed;
   top: 0;
@@ -10,29 +13,28 @@
   z-index: 1000;
 }
 
-
 .modal__overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4); /* only darkens, doesn’t block */
+  background: rgba(0, 0, 0, 0.4); 
   z-index: 1;
 }
 
 .modal__content {
   position: relative;
-  z-index: 2; /* content above overlay */
-  width: 496px;
-  height: 436px;
+  z-index: 2; 
   background: #fff;
-  border-radius: 20px;
   border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
   padding: 28px;
 }
 
-
+/* -------------------
+   Title & Close Button
+------------------- */
 .modal__title {
   font-family: var(--font-main, "Cabinet Grotesk", Arial, sans-serif);
   font-weight: 700;
@@ -43,12 +45,12 @@
 
 .modal__close {
   position: absolute;
-  top: 22px;   /* padding from top */
-  right: 30px; /* padding from right */
+  top: 22px;
+  right: 30px;
   width: 16px;
   height: 16px;
   border: none;
-  border-radius: 50%; /* optional, remove if Figma shows square */
+  border-radius: 50%; 
   padding: 0;
   display: flex;
   justify-content: center;
@@ -62,7 +64,9 @@
   display: block;
 }
 
-
+/* -------------------
+   Form
+------------------- */
 .modal__label {
   display: flex;
   flex-direction: column;
@@ -71,6 +75,7 @@
   font-size: 16px;
   line-height: 20px;
   margin-bottom: 24px;
+  position: relative;
 }
 
 .modal__label input {
@@ -86,60 +91,112 @@
   border: none;
   padding: 0;
   margin-bottom: 32px;
+
   font-family: var(--font-main);
   font-weight: 700;
   font-size: 16px;
   line-height: 20px;
+
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
 .modal__fieldset legend {
-  margin-bottom: 12px; /* gap between legend and "Hot" */
+  margin-bottom: 12px;
 }
 
+.modal__fieldset label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.modal__fieldset input[type="radio"]:checked + span {
+  color: rgba(0, 0, 0, 1);
+}
+
+/* -------------------
+   Submit Button
+------------------- */
 .modal__submit {
   width: 124px;
   height: 36px;
+  border: none;
   border-radius: 4px;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  /* Typography */
   font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-weight: 700;
   font-size: 16px;
   line-height: 20px;
 
-  background: rgba(0, 0, 0, 1); /* ✅ Base (enabled) */
+  background: #000; 
   color: #fff;
-  border: none;
   cursor: pointer;
   transition: background 0.2s ease;
 }
 
-.modal__fieldset label {
-  display: flex;
-  align-items: center;
-  gap: 8px; /* space between radio and text */
-  color: rgba(0, 0, 0, 0.5);
-}
-
-/* Checked → darker text */
-.modal__fieldset input[type="radio"]:checked + span {
-  color: rgba(0, 0, 0, 1);
-}
-
-/* Hover only applies if enabled */
 .modal__submit:hover:not(:disabled) {
-  background: rgba(0, 0, 0, 0.6); /* ✅ Hover */
+  background: rgba(0, 0, 0, 0.6);
 }
 
 .modal__submit:disabled {
-  background: rgba(0, 0, 0, 0.3); /* ✅ Disabled */
+  background: rgba(0, 0, 0, 0.3);
   cursor: not-allowed;
 }
 
+/* -------------------
+   Error Message
+------------------- */
+.modal__error {
+  position: absolute;
+  bottom: -18px;
+  left: 0;
+  font-size: 14px;
+  line-height: 18px;
+  color: #e74c3c;
+  pointer-events: none;
+}
+
+/* -------------------
+   Mobile (≤768px)
+------------------- */
+@media (max-width: 768px) {
+  .modal_type_form .modal__content {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    width: 100%;
+    max-width: 375px;
+    max-height: 455px;
+    margin: 0 auto;
+
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 12px 12px 0 0;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 2;
+  }
+
+  .modal_type_form .modal__label input {
+    width: 100%;
+    max-width: 440px;
+  }
+
+  .modal_type_form .modal__submit {
+    width: 100%;
+    height: 44px;
+  }
+
+  .modal_type_form .modal__close {
+    top: 16px;
+    right: 16px;
+  }
+}

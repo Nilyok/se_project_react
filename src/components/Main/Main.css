@@ -1,31 +1,63 @@
+/* -------------------
+   Main Layout
+------------------- */
 .main {
   width: 1360px;
-  margin: 0 auto 85px;   /* removed top margin, kept bottom */
+  margin: 0 auto 85px;
   box-sizing: border-box;
 }
 
+/* -------------------
+   Clothing Section
+------------------- */
+.clothing-section {
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
 
-.main__subtitle {
+.clothing-section__subtitle {
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: 20px;
-  line-height: 100%; /* matches Figma */
-  margin: 40px 0 40px 0; /* 40px gap below before clothing cards */
-  color: #000; /* adjust if needed */
+  line-height: 100%; 
+  margin: 40px 0;
+  color: #000;
+  text-align: left;
 }
 
-.main__clothing-list {
+.clothing-section__grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
-  gap: 20px; /* space between cards */
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 20px;
 }
 
-.main__clothing-item {
-  display: flex;
-  justify-content: center;
+/* -------------------
+   Mobile
+------------------- */
+@media (max-width: 768px) {
+  .main {
+    width: 100%;
+    margin: 0 auto 40px;
+  }
+
+  .clothing-section {
+    width: 343px;          
+    margin: 16px 0 0 16px;
+  }
+
+  .clothing-section__subtitle {
+    margin: 32px 0 20px;
+    width: 340px;
+    line-height: 20px;
+    overflow-wrap: break-word;
+  }
+
+  .clothing-section__grid {
+    grid-template-columns: repeat(2, 164px);
+    gap: 16px;
+    justify-content: center;
+    margin: 0 auto;
+  }
 }
-
-

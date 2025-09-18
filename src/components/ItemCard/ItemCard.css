@@ -1,5 +1,9 @@
+/* -------------------
+   Item Card
+------------------- */
 .item-card {
-  width: 323px;
+  width: 100%;
+  max-width: 323px;
   height: 326px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 8px;
@@ -14,18 +18,22 @@
   transform: translateY(-4px);
 }
 
-/* Item image should fit */
+/* -------------------
+   Image
+------------------- */
 .item-card__image {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* Label box */
+/* -------------------
+   Label
+------------------- */
 .item-card__label {
   position: absolute;
-  top: 15px; /* 15px from top */
-  left: 50%; /* center horizontally */
+  top: 15px;
+  left: 50%;
   transform: translateX(-50%);
   min-width: 73px;
   height: 24px;
@@ -35,10 +43,24 @@
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: 16px;
-  line-height: 20px;
+  line-height: 24px;
   text-align: center;
   color: rgba(0, 0, 0, 0.6);
   white-space: nowrap;
 }
 
+/* -------------------
+   Mobile
+------------------- */
+@media (max-width: 768px) {
+  .item-card {
+    max-width: 164px;
+    max-height: 164px;
+  }
 
+  .item-card__label {
+    top: 8px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+}

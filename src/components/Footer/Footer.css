@@ -1,18 +1,25 @@
+/* -------------------
+   Footer Base
+------------------- */
 .footer {
-  width: 1358px;
-  margin: 0 auto; /* center align container */
+  width: 100%;
+  max-width: 1358px;
+  margin: 0 auto;
   display: flex;
-  justify-content: space-between; /* push items to edges */
-  align-items: flex-end; /* bottom align text */
-  padding-bottom: 24px; /* 24px gap from bottom */
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 24px;
+
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
   color: rgba(0, 0, 0, 1);
-
 }
 
+/* -------------------
+   Sections
+------------------- */
 .footer__left {
   text-align: left;
 }
@@ -21,3 +28,12 @@
   text-align: right;
 }
 
+/* -------------------
+   Mobile (≤768px)
+------------------- */
+@media (max-width: 768px) {
+  .footer {
+    width: 343px;
+    margin: 0 16px 20px;
+  }
+}
