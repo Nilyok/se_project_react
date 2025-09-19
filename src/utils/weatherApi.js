@@ -1,11 +1,11 @@
-import { APIkey, latitude, longitude } from "./constants";
+import { apiKey, latitude, longitude } from "./constants";
 
 /* -------------------
    Fetch Weather Data
 ------------------- */
 export const getWeather = () => {
   return fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
+    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${apiKey}`
   )
     .then((res) => {
       if (!res.ok) {
@@ -14,14 +14,14 @@ export const getWeather = () => {
       return res.json();
     })
     .then((data) => {
-      const temperature = Math.round(data.main.temp); 
+      const temperature = Math.round(data.main.temp);
       const city = data.name;
 
       return {
         temp: temperature,
         city,
         type: getWeatherCondition(temperature),
-        condition: data.weather[0].main, 
+        condition: data.weather[0].main,
         timeOfDay: data.weather[0].icon.includes("d") ? "Day" : "Night",
       };
     });

@@ -172,12 +172,10 @@
     bottom: 0;
     left: 0;
     right: 0;
-
     width: 100%;
     max-width: 375px;
     max-height: 455px;
     margin: 0 auto;
-
     border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 12px 12px 0 0;
     padding: 20px;
