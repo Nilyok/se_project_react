@@ -1,4 +1,3 @@
-// src/utils/clothingItems.js
 const defaultClothingItems = [
   {
     _id: 1,

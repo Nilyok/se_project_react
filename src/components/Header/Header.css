@@ -6,7 +6,7 @@
   max-width: 1440px;
   margin: 0 auto;
   position: relative;
-  z-index: 10; /* stays above weather card */
+  z-index: 10;
 }
 
 /* -------------------
@@ -17,7 +17,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 32px 40px 0;
-  height: 40px; /* per Figma */
+  height: 40px; 
   max-width: 1440px;
   margin: 0 auto;
   width: 100%;
@@ -89,7 +89,6 @@
   object-fit: cover;
 }
 
-/* Shared text styles */
 .header__date-location,
 .header__add-btn,
 .header__username {

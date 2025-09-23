@@ -8,7 +8,6 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { defaultClothingItems } from "../../utils/clothingItems";
 
-
 function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
@@ -16,8 +15,12 @@ function App() {
   const [selectedCard, setSelectedCard] = useState(null);
   const [isHeaderPopupOpen, setIsHeaderPopupOpen] = useState(false);
 
-//  Form state
-  const [formData, setFormData] = useState({ name: "", imageUrl: "", weather: "" });
+  //  Form state
+  const [formData, setFormData] = useState({
+    name: "",
+    imageUrl: "",
+    weather: "",
+  });
   const [errors, setErrors] = useState({});
 
   /* -------------------
@@ -81,7 +84,7 @@ function App() {
     setClothingItems((prev) => [newItem, ...prev]);
     setFormData({ name: "", imageUrl: "", weather: "" });
     setErrors({});
-    setActiveModal("");
+    handleCloseModal();
   }
 
   /* -------------------
@@ -101,6 +104,25 @@ function App() {
     setActiveModal("");
     setSelectedCard(null);
   }
+
+  /* -------------------
+     Escape Key Listener
+  ------------------- */
+  useEffect(() => {
+    if (!activeModal) return; // stop effect if no active modal
+
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        handleCloseModal();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscClose);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]);
 
   /* -------------------
      Render
@@ -141,10 +163,10 @@ function App() {
         title="New garment"
         buttonText="Add garment"
         onSubmit={handleSubmit}
-        >
+      >
         <label className="modal__label">
-            Name
-            <input
+          Name
+          <input
             type="text"
             name="name"
             placeholder="Name"
@@ -152,13 +174,13 @@ function App() {
             onChange={handleChange}
             required
             autoComplete="off"
-            />
-            {errors.name && <span className="modal__error">{errors.name}</span>}
+          />
+          {errors.name && <span className="modal__error">{errors.name}</span>}
         </label>
 
         <label className="modal__label">
-            Image
-            <input
+          Image
+          <input
             type="url"
             name="imageUrl"
             placeholder="Image URL"
@@ -166,45 +188,46 @@ function App() {
             onChange={handleChange}
             required
             autoComplete="off"
-            />
-            {errors.imageUrl && <span className="modal__error">{errors.imageUrl}</span>}
+          />
+          {errors.imageUrl && (
+            <span className="modal__error">{errors.imageUrl}</span>
+          )}
         </label>
 
         <fieldset className="modal__fieldset">
-            <legend>Select the weather type:</legend>
-            <label>
+          <legend>Select the weather type:</legend>
+          <label>
             <input
-                type="radio"
-                name="weather"
-                value="hot"
-                checked={formData.weather === "hot"}
-                onChange={handleChange}
+              type="radio"
+              name="weather"
+              value="hot"
+              checked={formData.weather === "hot"}
+              onChange={handleChange}
             />
             <span>Hot</span>
-            </label>
-            <label>
+          </label>
+          <label>
             <input
-                type="radio"
-                name="weather"
-                value="warm"
-                checked={formData.weather === "warm"}
-                onChange={handleChange}
+              type="radio"
+              name="weather"
+              value="warm"
+              checked={formData.weather === "warm"}
+              onChange={handleChange}
             />
             <span>Warm</span>
-            </label>
-            <label>
+          </label>
+          <label>
             <input
-                type="radio"
-                name="weather"
-                value="cold"
-                checked={formData.weather === "cold"}
-                onChange={handleChange}
+              type="radio"
+              name="weather"
+              value="cold"
+              checked={formData.weather === "cold"}
+              onChange={handleChange}
             />
             <span>Cold</span>
-            </label>
+          </label>
         </fieldset>
-        </ModalWithForm>
-
+      </ModalWithForm>
 
       {/* Modal for Preview Item */}
       <ItemModal

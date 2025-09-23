@@ -18,7 +18,7 @@
   margin: 40px auto 0;
   position: relative;
   overflow: hidden;
-  border-radius: 12px; /* check Figma */
+  border-radius: 12px;
 }
 
 .weather-card__background {
@@ -46,6 +46,7 @@
    Mobile
 ------------------- */
 @media (max-width: 768px) {
+
   .weather-card {
     width: 100%;
     max-width: 343px;
@@ -54,6 +55,6 @@
 
   .weather-card__background {
     object-fit: cover;
-    object-position: right center; /* keeps sun in view */
+    object-position: right center; 
   }
 }
