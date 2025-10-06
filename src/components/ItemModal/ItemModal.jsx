@@ -4,29 +4,31 @@ import closeIcon from "../../images/Preview-Close.svg";
 
 function ItemModal({ isOpen, onClose, card }) {
   /* -------------------
-     Close on ESC
+     Close on ESC + Overlay
   ------------------- */
   useEffect(() => {
-    if (!isOpen) return;
+    if (!isOpen) return; 
 
-    function handleEsc(e) {
+    const handleEscape = (e) => {
       if (e.key === "Escape") {
         onClose();
       }
-    }
+    };
 
-    document.addEventListener("keydown", handleEsc);
-    return () => document.removeEventListener("keydown", handleEsc);
+    const handleOverlay = (e) => {
+      if (e.target.classList.contains("modal")) {
+        onClose();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscape);
+    document.addEventListener("mousedown", handleOverlay);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+      document.removeEventListener("mousedown", handleOverlay);
+    };
   }, [isOpen, onClose]);
-
-  /* -------------------
-     Close on overlay click
-  ------------------- */
-  function handleOverlayClick(e) {
-    if (e.target.classList.contains("modal")) {
-      onClose();
-    }
-  }
 
   if (!card) return null;
 
@@ -36,7 +38,6 @@ function ItemModal({ isOpen, onClose, card }) {
   return (
     <div
       className={`modal modal_type_preview ${isOpen ? "modal_is-opened" : ""}`}
-      onClick={handleOverlayClick}
     >
       <div className="modal__content modal__content_type_preview">
         <button type="button" className="modal__close" onClick={onClose}>
