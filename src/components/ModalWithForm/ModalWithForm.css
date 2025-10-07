@@ -25,12 +25,60 @@
 
 .modal__content {
   position: relative;
-  z-index: 2; 
+  z-index: 2;
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 20px;
-  padding: 28px;
 }
+
+/* -------------------
+   Add Garment Modal (form)
+------------------- */
+.modal__content_type_add-garment {
+  padding: 24px 32px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+/* Specific input fixes */
+.modal__content_type_add-garment .modal__label input {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 8px;
+  font-size: 16x;
+  font-family: inherit;
+}
+
+.modal__content_type_add-garment .modal__fieldset {
+  border: none;
+  margin-top: 12px;
+}
+
+.modal__content_type_add-garment .modal__submit {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: opacity 0.3s;
+}
+
+.modal__content_type_add-garment .modal__submit:hover {
+  opacity: 0.8;
+}
+
+.modal__submit:disabled {
+  background: #0000004d; /* grayish-black */
+  color: #fff;
+  cursor: not-allowed;
+  opacity: 1; /* prevent it from fading out */
+}
+
 
 /* -------------------
    Title & Close Button
@@ -85,6 +133,8 @@
   border-bottom: 1px solid #000;
   padding: 4px 0;
   font-family: inherit;
+  width: 100%;                   /* <-- makes input stay inside modal width */
+  box-sizing: border-box;
 }
 
 .modal__fieldset {
@@ -145,11 +195,6 @@
   background: rgba(0, 0, 0, 0.6);
 }
 
-.modal__submit:disabled {
-  background: rgba(0, 0, 0, 0.3);
-  cursor: not-allowed;
-}
-
 /* -------------------
    Error Message
 ------------------- */
@@ -157,7 +202,7 @@
   position: absolute;
   bottom: -18px;
   left: 0;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 18px;
   color: #e74c3c;
   pointer-events: none;

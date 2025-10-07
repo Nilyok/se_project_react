@@ -1,0 +1,67 @@
+/* -------------------
+   Sidebar Base
+------------------- */
+.sidebar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 1360px;
+  padding: 40px 0 0 385px; /* push in from left to match Figma position */
+  box-sizing: border-box;
+}
+
+/* -------------------
+   Row: Avatar + Name + Add Button
+------------------- */
+.sidebar__row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+/* Avatar */
+.sidebar__avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px; /* gap between avatar and name */
+}
+
+/* Username */
+.sidebar__username {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  color: #000;
+  margin-right: 166px; /* space before “Your items” */
+}
+
+/* “Your items” Title */
+.sidebar__title {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  color: #000;
+  margin-right: 20px; /* gap before +Add button */
+}
+
+/* Add Button */
+.sidebar__add-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar__add-icon {
+  width: 88px;
+  height: 25px;
+  object-fit: contain;
+}

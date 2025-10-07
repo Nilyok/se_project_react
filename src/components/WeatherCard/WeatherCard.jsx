@@ -1,3 +1,4 @@
+import React from "react";
 import "./WeatherCard.css";
 
 import DayCloudy from "../../images/weather/WeatherCard-Day-Cloudy.svg";
@@ -12,6 +13,7 @@ import NightRain from "../../images/weather/WeatherCard-Night-Rain.svg";
 import NightSnow from "../../images/weather/WeatherCard-Night-Snow.svg";
 import NightStorm from "../../images/weather/WeatherCard-Night-Storm.svg";
 import NightSunny from "../../images/weather/WeatherCard-Night-Sunny.svg";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 /* -------------------
    Weather Image Map
@@ -37,6 +39,22 @@ const weatherImages = {
 
 function WeatherCard({ temperature, condition, timeOfDay }) {
   const imageSrc = weatherImages[timeOfDay]?.[condition] || DaySunny;
+  // Access the current unit (°F or °C)
+  const { currentTemperatureUnit } = React.useContext(CurrentTemperatureUnitContext);
+
+  // Prevent crash if temperature is undefined (while API loads)
+  if (!temperature) {
+    return (
+      <section className="weather-card">
+        <img
+          src={imageSrc}
+          alt={`${condition} ${timeOfDay}`}
+          className="weather-card__background"
+        />
+        <p className="weather-card__temp">--°{currentTemperatureUnit}</p>
+      </section>
+    );
+  }
 
   return (
     <section className="weather-card">
@@ -45,7 +63,9 @@ function WeatherCard({ temperature, condition, timeOfDay }) {
         alt={`${condition} ${timeOfDay}`}
         className="weather-card__background"
       />
-      <p className="weather-card__temp">{temperature}°F</p>
+      <p className="weather-card__temp">
+        {temperature[currentTemperatureUnit]}°{currentTemperatureUnit}
+      </p>
     </section>
   );
 }

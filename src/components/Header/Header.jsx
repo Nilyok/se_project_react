@@ -3,6 +3,9 @@ import logo from "../../images/Logo-Header.svg";
 import avatar from "../../images/User-Avartar-Header.png";
 import mobileBtn from "../../images/Mobile-Avatar-Button.svg";
 import mobileClose from "../../images/Mobile-Close-Button.svg";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+import { Link } from "react-router-dom";
+
 
 function Header({ location, onAddClothesClick, isPopupOpen, onOpenPopup, onClosePopup }) {
   const currentDate = new Date().toLocaleString("default", {
@@ -16,11 +19,14 @@ function Header({ location, onAddClothesClick, isPopupOpen, onOpenPopup, onClose
           Left side (logo + date)
       ------------------- */}
       <div className="header__left">
-        <img src={logo} alt="WTWR logo" className="header__logo" />
+        <Link to="/" className="header__logo-link">
+          <img src={logo} alt="WTWR logo" className="header__logo" />
+        </Link>
         <p className="header__date-location">
           {currentDate}, {location}
         </p>
       </div>
+
 
       {/* -------------------
           Mobile button
@@ -33,6 +39,7 @@ function Header({ location, onAddClothesClick, isPopupOpen, onOpenPopup, onClose
           Desktop right side
       ------------------- */}
       <div className="header__right">
+        <ToggleSwitch />
         <button
           type="button"
           className="header__add-btn"
@@ -44,9 +51,12 @@ function Header({ location, onAddClothesClick, isPopupOpen, onOpenPopup, onClose
           + Add clothes
         </button>
         <div className="header__user">
-          <p className="header__username">Terrence Tegegne</p>
+          <Link to="/profile" className="header__username">
+            Terrence Tegegne
+          </Link>
           <img src={avatar} alt="User Avatar" className="header__avatar" />
         </div>
+
       </div>
 
       {/* -------------------

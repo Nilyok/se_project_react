@@ -1,0 +1,15 @@
+.clothes-section__more {
+  margin-top: 20px;
+  background: none;
+  border: 1px solid #000;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.clothes-section__more:hover {
+  background: rgba(0, 0, 0, 0.05);
+}

@@ -1,8 +1,12 @@
 import "./Main.css";
+import React from "react";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 function Main({ weatherData, clothingItems, onCardClick }) {
+  const { currentTemperatureUnit } = React.useContext(CurrentTemperatureUnitContext);
+
   /* -------------------
      Filter clothing items by weather
   ------------------- */
@@ -17,7 +21,7 @@ function Main({ weatherData, clothingItems, onCardClick }) {
     <main className="main">
       <div className="weather-card-container">
         <WeatherCard
-          temperature={weatherData.temp}
+          temperature={weatherData.temperature}
           condition={weatherData.condition}
           timeOfDay={weatherData.timeOfDay}
         />
@@ -25,7 +29,8 @@ function Main({ weatherData, clothingItems, onCardClick }) {
 
       <section className="clothing-section">
         <p className="clothing-section__subtitle">
-          Today is {weatherData.temp}°F / You may want to wear:
+          Today is {weatherData.temperature[currentTemperatureUnit]}°
+          {currentTemperatureUnit} / You may want to wear:
         </p>
         <div className="clothing-section__grid">
           {filteredItems.map((item) => (

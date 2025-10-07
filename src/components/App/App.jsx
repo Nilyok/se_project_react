@@ -1,27 +1,29 @@
 import "./App.css";
 import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { getWeather } from "../../utils/weatherApi";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
+import Profile from "../Profile/Profile";
 import Footer from "../Footer/Footer";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { defaultClothingItems } from "../../utils/clothingItems";
+import AddItemModal from "../AddItemModal/AddItemModal";
 
+/* -------------------
+     App Component
+------------------- */
 function App() {
+  /* -------------------
+     State Management
+  ------------------- */
   const [weatherData, setWeatherData] = useState(null);
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState(null);
   const [isHeaderPopupOpen, setIsHeaderPopupOpen] = useState(false);
-
-  //  Form state
-  const [formData, setFormData] = useState({
-    name: "",
-    imageUrl: "",
-    weather: "",
-  });
-  const [errors, setErrors] = useState({});
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
   /* -------------------
      Fetch Weather on Mount
@@ -33,62 +35,34 @@ function App() {
   }, []);
 
   /* -------------------
-     Validation
+     Temperature Unit Context State
   ------------------- */
-  function validate(name, value) {
-    let error = "";
+  const handleToggleSwitchChange = () => {
+    setCurrentTemperatureUnit((prev) => (prev === "F" ? "C" : "F"));
+    console.log(
+      "Temperature unit switched to:",
+      currentTemperatureUnit === "F" ? "C" : "F"
+    );
+  };
 
-    if (name === "imageUrl") {
-      const pattern = /^https?:\/\/.*\.(jpg|jpeg|png|gif|webp)$/i;
-      if (!pattern.test(value)) {
-        error = "This is not a valid image link";
-      }
-    }
-
-    if (name === "name" && value.trim() === "") {
-      error = "Name is required";
-    }
-
-    return error;
-  }
-
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-
-    const error = validate(name, value);
-    setErrors((prev) => ({ ...prev, [name]: error }));
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    const newErrors = {};
-    Object.keys(formData).forEach((field) => {
-      const error = validate(field, formData[field]);
-      if (error) newErrors[field] = error;
-    });
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
-
+  /* -------------------
+     Add Item Modal Handler
+  ------------------- */
+  function handleAddItemSubmit(item, resetForm) {
     const newItem = {
       _id: crypto.randomUUID(),
-      name: formData.name,
-      link: formData.imageUrl,
-      weather: formData.weather,
+      name: item.name,
+      link: item.imageUrl,
+      weather: item.weather,
     };
 
     setClothingItems((prev) => [newItem, ...prev]);
-    setFormData({ name: "", imageUrl: "", weather: "" });
-    setErrors({});
+    resetForm();
     handleCloseModal();
   }
 
   /* -------------------
-     Handlers
+     Modal & Popup Handlers
   ------------------- */
   function handleAddClothesClick() {
     setActiveModal("addClothes");
@@ -109,7 +83,7 @@ function App() {
      Escape Key Listener
   ------------------- */
   useEffect(() => {
-    if (!activeModal) return; // stop effect if no active modal
+    if (!activeModal) return;
 
     const handleEscClose = (e) => {
       if (e.key === "Escape") {
@@ -118,7 +92,6 @@ function App() {
     };
 
     document.addEventListener("keydown", handleEscClose);
-
     return () => {
       document.removeEventListener("keydown", handleEscClose);
     };
@@ -127,115 +100,78 @@ function App() {
   /* -------------------
      Render
   ------------------- */
-  const isValid =
-    formData.name.trim() !== "" &&
-    formData.imageUrl.trim() !== "" &&
-    !errors.imageUrl &&
-    formData.weather.trim() !== "";
-
   return (
-    <>
-      <div className="header-container">
-        <Header
-          location={weatherData ? weatherData.city : "Loading..."}
-          onAddClothesClick={handleAddClothesClick}
-          isPopupOpen={isHeaderPopupOpen}
-          onClosePopup={() => setIsHeaderPopupOpen(false)}
-          onOpenPopup={() => setIsHeaderPopupOpen(true)}
-        />
-      </div>
-
-      {weatherData && (
-        <Main
-          weatherData={weatherData}
-          clothingItems={clothingItems}
-          onCardClick={handleCardClick}
-        />
-      )}
-
-      <Footer />
-
-      {/* Modal for Add Clothes */}
-      <ModalWithForm
-        isOpen={activeModal === "addClothes"}
-        onClose={handleCloseModal}
-        name="form"
-        title="New garment"
-        buttonText="Add garment"
-        onSubmit={handleSubmit}
-      >
-        <label className="modal__label">
-          Name
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            autoComplete="off"
+    <CurrentTemperatureUnitContext.Provider
+      value={{
+        currentTemperatureUnit,
+        handleToggleSwitchChange,
+      }}
+    >
+      <BrowserRouter basename="/se_project_react">
+        <div className="page">
+          {/* -------------------
+              Header
+          ------------------- */}
+          <Header
+            location={weatherData ? weatherData.city : "Loading..."}
+            onAddClothesClick={handleAddClothesClick}
+            isPopupOpen={isHeaderPopupOpen}
+            onClosePopup={() => setIsHeaderPopupOpen(false)}
+            onOpenPopup={() => setIsHeaderPopupOpen(true)}
           />
-          {errors.name && <span className="modal__error">{errors.name}</span>}
-        </label>
 
-        <label className="modal__label">
-          Image
-          <input
-            type="url"
-            name="imageUrl"
-            placeholder="Image URL"
-            value={formData.imageUrl}
-            onChange={handleChange}
-            required
-            autoComplete="off"
+          {/* -------------------
+              Routes
+          ------------------- */}
+          <Routes>
+            <Route
+              path="/"
+              element={
+                weatherData && (
+                  <Main
+                    weatherData={weatherData}
+                    clothingItems={clothingItems}
+                    onCardClick={handleCardClick}
+                  />
+                )
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <Profile
+                  clothingItems={clothingItems}
+                  onAddClothesClick={handleAddClothesClick}
+                />
+              }
+            />
+          </Routes>
+
+          {/* -------------------
+              Footer
+          ------------------- */}
+          <Footer />
+
+          {/* -------------------
+              Add Clothes Modal
+          ------------------- */}
+          <AddItemModal
+            isOpen={activeModal === "addClothes"}
+            onAddItem={handleAddItemSubmit}
+            onCloseModal={handleCloseModal}
           />
-          {errors.imageUrl && (
-            <span className="modal__error">{errors.imageUrl}</span>
-          )}
-        </label>
 
-        <fieldset className="modal__fieldset">
-          <legend>Select the weather type:</legend>
-          <label>
-            <input
-              type="radio"
-              name="weather"
-              value="hot"
-              checked={formData.weather === "hot"}
-              onChange={handleChange}
-            />
-            <span>Hot</span>
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="weather"
-              value="warm"
-              checked={formData.weather === "warm"}
-              onChange={handleChange}
-            />
-            <span>Warm</span>
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="weather"
-              value="cold"
-              checked={formData.weather === "cold"}
-              onChange={handleChange}
-            />
-            <span>Cold</span>
-          </label>
-        </fieldset>
-      </ModalWithForm>
-
-      {/* Modal for Preview Item */}
-      <ItemModal
-        isOpen={activeModal === "preview"}
-        onClose={handleCloseModal}
-        card={selectedCard}
-      />
-    </>
+          {/* -------------------
+              Preview Item Modal
+          ------------------- */}
+          <ItemModal
+            isOpen={activeModal === "preview"}
+            onClose={handleCloseModal}
+            card={selectedCard}
+          />
+        </div>
+      </BrowserRouter>
+    </CurrentTemperatureUnitContext.Provider>
   );
 }
 

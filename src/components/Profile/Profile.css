@@ -1,0 +1,91 @@
+/* -------------------
+   Profile Layout
+------------------- */
+.profile {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding-top: 47px;
+  padding-bottom: 160px;
+}
+
+/* -------------------
+   Left Section (Avatar + Name)
+------------------- */
+.profile__user {
+  display: flex;
+  align-items: center; /* center them horizontally */
+  justify-content: flex-start;
+  gap: 12px;
+}
+
+.profile__avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile__username {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  color: #000;
+  white-space: nowrap;  
+}
+
+/* -------------------
+   Right Section (Title + Add button + Cards)
+------------------- */
+.profile__content {
+  margin-left: 166px; /* distance from avatar section */
+  width: 1015px;
+  height: 676px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 16px;
+}
+
+/* Header row: Your items + Add new */
+.profile__header-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 16px;
+}
+
+.profile__title {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  margin-right: 20px;
+  color: #000;
+}
+
+.profile__add-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.profile__add-icon {
+  width: 88px;
+  height: 25px;
+  object-fit: contain;
+}
+
+/* -------------------
+   Card Grid
+------------------- */
+.clothes-section__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 per row */
+  gap: 20px;
+  justify-items: center;
+  margin-bottom: 80px;
+}
