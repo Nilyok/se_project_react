@@ -33,7 +33,10 @@ function ToggleSwitch() {
   }, []);
 
   // ✅ Default image visible from the first frame
-  const [currentImage, setCurrentImage] = React.useState(toggleF);
+  const [currentImage, setCurrentImage] = React.useState(
+  currentTemperatureUnit === "C" ? toggleC : toggleF
+);
+
 
   // Update image when interaction or context changes
   React.useEffect(() => {
@@ -52,11 +55,9 @@ function ToggleSwitch() {
 
   // Handle click to toggle
   const handleClick = () => {
+    handleToggleSwitchChange();
     setIsMoving(true);
-    setTimeout(() => {
-      setIsMoving(false);
-      handleToggleSwitchChange();
-    }, 250);
+    setTimeout(() => setIsMoving(false), 250);
   };
 
   // Show nothing until images are loaded, or a simple fallback

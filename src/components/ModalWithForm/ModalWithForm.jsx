@@ -10,9 +10,9 @@ function ModalWithForm({
   buttonText,
   onSubmit,
   children,
-  isSubmitDisabled,  
+  isSubmitDisabled,
+  onDelete, // ✅ add optional delete handler
 }) {
-
   /* -------------------
      Close on ESC
   ------------------- */
@@ -20,16 +20,11 @@ function ModalWithForm({
     if (!isOpen) return;
 
     const handleEsc = (e) => {
-      if (e.key === "Escape") {
-        onClose();
-      }
+      if (e.key === "Escape") onClose();
     };
 
     document.addEventListener("keydown", handleEsc);
-
-    return () => {
-      document.removeEventListener("keydown", handleEsc);
-    };
+    return () => document.removeEventListener("keydown", handleEsc);
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
@@ -55,17 +50,34 @@ function ModalWithForm({
           <img src={closeIcon} alt="Close" className="modal__close-icon" />
         </button>
 
-        <h2 className="modal__title">{title}</h2>
+        {/* -------------------
+            Title + Delete Link Row
+        ------------------- */}
+        <div className="modal__title-row">
+          <h2 className="modal__title">{title}</h2>
+
+          {name === "preview" && (
+            <button
+              type="button"
+              className="modal__delete"
+              onClick={onDelete}
+            >
+              Delete item
+            </button>
+          )}
+        </div>
 
         <form className="modal__form" name={name} onSubmit={onSubmit}>
           {children}
-          <button
-            type="submit"
-            className="modal__submit"
-            disabled={isSubmitDisabled}
-          >
-            {buttonText}
-          </button>
+          {buttonText && (
+            <button
+              type="submit"
+              className="modal__submit"
+              disabled={isSubmitDisabled}
+            >
+              {buttonText}
+            </button>
+          )}
         </form>
       </div>
     </div>

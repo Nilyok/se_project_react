@@ -52,7 +52,6 @@
     max-width: 343px;
     height: 80px;
   }
-
   .weather-card__background {
     object-fit: cover;
     object-position: right center; 

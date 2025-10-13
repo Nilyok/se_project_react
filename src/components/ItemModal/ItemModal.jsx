@@ -2,23 +2,19 @@ import { useEffect } from "react";
 import "./ItemModal.css";
 import closeIcon from "../../images/Preview-Close.svg";
 
-function ItemModal({ isOpen, onClose, card }) {
+function ItemModal({ isOpen, onClose, card, onDelete }) {
   /* -------------------
      Close on ESC + Overlay
   ------------------- */
   useEffect(() => {
-    if (!isOpen) return; 
+    if (!isOpen) return;
 
     const handleEscape = (e) => {
-      if (e.key === "Escape") {
-        onClose();
-      }
+      if (e.key === "Escape") onClose();
     };
 
     const handleOverlay = (e) => {
-      if (e.target.classList.contains("modal")) {
-        onClose();
-      }
+      if (e.target.classList.contains("modal")) onClose();
     };
 
     document.addEventListener("keydown", handleEscape);
@@ -46,10 +42,21 @@ function ItemModal({ isOpen, onClose, card }) {
 
         <img src={card.link} alt={card.name} className="modal__image" />
 
-        <div className="modal__caption">
+        {/* -------------------
+            Title + Delete Button Row
+        ------------------- */}
+        <div className="modal__caption-row">
           <p className="modal__title">{card.name}</p>
-          <p className="modal__weather">Weather: {card.weather}</p>
+          <button
+            type="button"
+            className="modal__delete"
+            onClick={onDelete}
+          >
+            Delete item
+          </button>
         </div>
+
+        <p className="modal__weather">Weather: {card.weather}</p>
       </div>
     </div>
   );

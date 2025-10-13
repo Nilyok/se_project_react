@@ -79,6 +79,12 @@
   object-fit: contain;
 }
 
+/* Hide them by default (desktop) */
+.profile__tagline,
+.profile__logout {
+  display: none;
+}
+
 /* -------------------
    Card Grid
 ------------------- */
@@ -88,4 +94,74 @@
   gap: 20px;
   justify-items: center;
   margin-bottom: 80px;
+}
+
+
+/* -------------------
+   Mobile
+------------------- */
+@media (max-width: 768px) {
+  .profile {
+  display: flex;
+  width: 343px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0 0 16px 16px;
+  padding: 0;          /* remove top/bottom padding */
+  }
+
+  .profile__content {
+    margin: 0 auto;       /* center content */
+    padding: 0 0 24px 0;
+    width: 343px;         /* ✅ fixed container width */
+    height: auto;         /* let height adjust */
+  }
+
+  .profile__user {
+    display: flex;
+    align-items: stretch;
+    gap: 20px;
+    color: #00000099;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);   /* ✅ top line */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);/* ✅ bottom line */
+    padding: 20px 0 20px;              /* ✅ vertical padding */
+    width: 343px;   
+  }
+
+  .profile__username {
+    font-size: 24px;
+  }
+
+  .profile__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .profile__info .profile__tagline {
+    margin-top: 12px;
+    line-height: 100%;
+  }
+
+  .profile__info .profile__logout {
+    margin-top: 8px;
+    line-height: 100%;
+  }
+
+  .clothes-section__grid {
+    grid-template-columns: repeat(2, 164px);
+    gap: 16px;
+    margin: 0 auto;
+  }
+
+  .profile__header-row {
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  .profile__tagline,
+  .profile__logout {
+    display: block;
+  }
 }

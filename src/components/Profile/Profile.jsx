@@ -3,16 +3,25 @@ import avatar from "../../images/User-Avartar-Header.png";
 import addNewIcon from "../../images/Profile-AddNew.svg";
 import ClothesSection from "./ClothesSection";
 
-function Profile({ clothingItems, onAddClothesClick }) {
+function Profile({ clothingItems, onAddClothesClick, onCardClick, onDelete }) {
   return (
     <section className="profile">
-      {/* Left user column */}
+      {/* -------------------
+          Profile Header Section
+      ------------------- */}
       <div className="profile__user">
         <img src={avatar} alt="User Avatar" className="profile__avatar" />
-        <p className="profile__username">Terrence Tegegne</p>
+
+        <div className="profile__info">
+          <p className="profile__username">Terrence Tegegne</p>
+          <p className="profile__tagline">Change profile data</p>
+          <p className="profile__logout">Log out</p>
+        </div>
       </div>
 
-      {/* Right item section */}
+      {/* -------------------
+          User Items Section
+      ------------------- */}
       <div className="profile__content">
         <div className="profile__header-row">
           <h2 className="profile__title">Your items</h2>
@@ -21,15 +30,16 @@ function Profile({ clothingItems, onAddClothesClick }) {
             onClick={onAddClothesClick}
             aria-label="Add new item"
           >
-            <img
-              src={addNewIcon}
-              alt="Add New"
-              className="profile__add-icon"
-            />
+            <img src={addNewIcon} alt="Add New" className="profile__add-icon" />
           </button>
         </div>
 
-        <ClothesSection clothingItems={clothingItems} />
+        {/* ✅ Pass both onCardClick and onDelete */}
+        <ClothesSection
+          clothingItems={clothingItems}
+          onCardClick={onCardClick}
+          onDelete={onDelete}
+        />
       </div>
     </section>
   );

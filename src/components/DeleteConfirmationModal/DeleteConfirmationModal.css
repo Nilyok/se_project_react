@@ -1,0 +1,106 @@
+/* -------------------
+   Delete Confirmation Modal
+------------------- */
+.modal__content_type_delete {
+  width: 670px;
+  height: 280px;
+  background: #fff;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 40px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+/* Close button (top-right) */
+.modal__close_type_delete {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Text */
+.modal__text-group {
+  text-align: left;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal__text-title {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.modal__text-sub {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  margin-bottom: 12px;
+}
+
+/* Buttons */
+.modal__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.modal__confirm-btn {
+  color: #ff4d00;
+  border: none;
+  height: 44px;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.modal__confirm-btn:hover {
+  opacity: 0.8;
+}
+
+.modal__cancel-btn {
+  background: none;
+  border: none;
+  color: #000;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  height: 44px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.modal__cancel-btn:hover {
+  opacity: 0.6;
+}
+
+/* -------------------
+   Mobile
+------------------- */
+@media (max-width: 768px) {
+  .modal__content_type_delete {
+    width: 343px;
+    height: auto;
+    padding: 32px 24px;
+  }
+
+  .modal__buttons {
+    max-width: 100%;
+  }
+}

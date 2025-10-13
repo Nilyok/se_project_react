@@ -114,9 +114,10 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 18px 16px 0;
-    margin-bottom: 40px;
+    margin-bottom: 80px;
     gap: 0;
     position: relative;
+    z-index: 20;
   }
 
   .header__logo {
@@ -232,4 +233,40 @@
   .header__popup-close:hover {
     opacity: 0.6;
   }
+  
+}
+
+@media (max-width: 768px) {
+  /* ✅ Ensure profile header ignores default mobile .header rules */
+  .header.header--profile-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 52px;
+    gap: 0;
+    position: relative;
+    z-index: 20;
+  }
+
+  /* ✅ Override the default .header__left mobile style */
+  .header.header--profile-mobile .header__left {
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .header.header--profile-mobile .header__date-location {
+    font-size: 16px;
+    line-height: 20px;
+    padding-top: 0;
+    margin: 0;
+  }
+
+  /* ✅ Slightly taller popup (profile only) */
+  .header.header--profile .header__popup {
+    height: 240px;
+  }
+  
 }

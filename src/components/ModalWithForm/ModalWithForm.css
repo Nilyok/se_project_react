@@ -86,9 +86,9 @@
 .modal__title {
   font-family: var(--font-main, "Cabinet Grotesk", Arial, sans-serif);
   font-weight: 700;
-  font-size: 16px;
-  line-height: 20px;
-  margin-bottom: 24px;
+  font-size: 20px;
+  line-height: 24px;
+  margin-left: 0px;
 }
 
 .modal__close {
@@ -111,6 +111,33 @@
   height: 100%;
   display: block;
 }
+
+/* -------------------
+   Title + Delete Link Row
+------------------- */
+.modal__title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.modal__delete {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  background: none;
+  border: none;
+  color: #FF4D00;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.modal__delete:hover {
+  opacity: 0.6;
+}
+
 
 /* -------------------
    Form
@@ -212,20 +239,31 @@
    Mobile (≤768px)
 ------------------- */
 @media (max-width: 768px) {
+
   .modal_type_form .modal__content {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     width: 100%;
-    max-width: 375px;
-    max-height: 455px;
+    max-width: none;
+    max-height: auto;
     margin: 0 auto;
     border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 12px 12px 0 0;
     padding: 20px;
     box-sizing: border-box;
     z-index: 2;
+  }
+  
+
+  .modal__content_type_add-garment {
+    padding: 16px 16px 16px;
+    position: fixed;
+    bottom: 0;
+    border-radius: 20px 20px 0 0;
+    width: 375px;
+    height: 455px;
   }
 
   .modal_type_form .modal__label input {
@@ -241,5 +279,25 @@
   .modal_type_form .modal__close {
     top: 16px;
     right: 16px;
+  }
+
+  .modal__title-row {
+    padding-top: 16px;
+  }
+
+  .modal__close-icon {
+    content: url("../../images/Mobile-Close-Button.svg");
+    width: 24px;
+    height: 24px;
+  }
+
+  .modal__submit {
+    width: 343px;
+    height: 44px;
+  }
+
+  .modal__weather {
+    padding-left: 20px;
+    padding-bottom: 40px;
   }
 }

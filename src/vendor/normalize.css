@@ -22,7 +22,6 @@ body {
 
 /* Improve media defaults */
 img, picture {
-  max-width: 100%;
   display: block;
 }
 
