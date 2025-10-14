@@ -30,6 +30,7 @@ API Services • JSON Server (Mock API), OpenWeather API
 
 🧩 Project Structure
 📂 src/
+```
  ┣ 📁 components/        → Header, Main, Footer, Modals, Profile, etc.
  ┣ 📁 contexts/          → React Context for temperature unit
  ┣ 📁 hooks/             → Custom React hooks (useForm)
@@ -39,6 +40,7 @@ API Services • JSON Server (Mock API), OpenWeather API
  ┣ 📁 images/            → Icons and weather images
  ┣ 📄 index.css          → Global styles
  ┗ 📄 main.jsx           → Application entry point
+ ```
 
 ⚙️ Setup your own WTWR
 
