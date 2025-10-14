@@ -11,7 +11,7 @@ function ModalWithForm({
   onSubmit,
   children,
   isSubmitDisabled,
-  onDelete, // ✅ add optional delete handler
+  onDelete,
 }) {
   /* -------------------
      Close on ESC

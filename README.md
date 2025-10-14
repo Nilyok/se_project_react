@@ -1,4 +1,9 @@
 # 🧥 WTWR — What To Wear?
+![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-yellow?logo=javascript&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-blue?logo=css3&logoColor=white)
+![Status](https://img.shields.io/badge/Project-Complete-brightgreen)
 
 A weather-based clothing recommendation app built with React.  
 It fetches real-time weather data and suggests clothing items based on temperature and conditions.
@@ -14,7 +19,7 @@ It retrieves live weather data using the OpenWeather API, categorizes the temper
 
 ## 🎨 Design Reference
 
-**Figma:** [Sprint 10: WTWR Design] (https://www.figma.com/design/dQLJwEKasIdspciJAJrCaf/Sprint-11_-WTWR?node-id=311-433&t=DCTuwMrtagL4uoFg-1)
+**Figma:** [Sprint 11: WTWR Design] (https://www.figma.com/design/dQLJwEKasIdspciJAJrCaf/Sprint-11_-WTWR?node-id=311-433&t=DCTuwMrtagL4uoFg-1)
 
 ---
 

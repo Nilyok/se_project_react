@@ -13,7 +13,7 @@ import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmati
 import { getItems, addItem, deleteItem } from "../../utils/api";
 
 /* -------------------
-   AppHeader Component (detects route variant)
+   AppHeader Component 
 ------------------- */
 function AppHeader({
   weatherData,
@@ -71,7 +71,7 @@ function AppContent() {
   };
 
   /* -------------------
-     Add New Item (POST)
+     Add New Item 
   ------------------- */
   function handleAddItemSubmit(item, resetForm) {
     const newItem = {
@@ -108,7 +108,7 @@ function AppContent() {
   }
 
   /* -------------------
-     Delete Confirmation (DELETE)
+     Delete Confirmation
   ------------------- */
   function openDeleteConfirmation(card) {
     setCardToDelete(card);
@@ -148,7 +148,7 @@ function AppContent() {
       }}
     >
       <div className="page">
-        {/* ✅ Smart Header (auto variant) */}
+        {/* variant Header */}
         <AppHeader
           weatherData={weatherData}
           onAddClothesClick={handleAddClothesClick}

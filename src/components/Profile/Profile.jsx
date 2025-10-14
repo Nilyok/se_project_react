@@ -34,7 +34,6 @@ function Profile({ clothingItems, onAddClothesClick, onCardClick, onDelete }) {
           </button>
         </div>
 
-        {/* ✅ Pass both onCardClick and onDelete */}
         <ClothesSection
           clothingItems={clothingItems}
           onCardClick={onCardClick}

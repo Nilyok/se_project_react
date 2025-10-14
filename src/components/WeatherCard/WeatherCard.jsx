@@ -39,10 +39,9 @@ const weatherImages = {
 
 function WeatherCard({ temperature, condition, timeOfDay }) {
   const imageSrc = weatherImages[timeOfDay]?.[condition] || DaySunny;
-  // Access the current unit (°F or °C)
   const { currentTemperatureUnit } = React.useContext(CurrentTemperatureUnitContext);
 
-  // Prevent crash if temperature is undefined (while API loads)
+
   if (!temperature) {
     return (
       <section className="weather-card">

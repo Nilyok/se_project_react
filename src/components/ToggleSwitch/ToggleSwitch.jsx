@@ -15,7 +15,10 @@ function ToggleSwitch() {
   const [isMoving, setIsMoving] = React.useState(false);
   const [imagesLoaded, setImagesLoaded] = React.useState(false);
 
-  // ✅ Preload all images
+
+  /* -------------------
+     Preload all images
+  ------------------- */
   React.useEffect(() => {
     const imageUrls = [toggleF, toggleHover, toggleMove, toggleC];
     const imagePromises = imageUrls.map(src => {
@@ -32,15 +35,18 @@ function ToggleSwitch() {
       .catch(err => console.error('Failed to load images:', err));
   }, []);
 
-  // ✅ Default image visible from the first frame
+    /* -------------------
+     Default image
+  ------------------- */
   const [currentImage, setCurrentImage] = React.useState(
   currentTemperatureUnit === "C" ? toggleC : toggleF
 );
 
-
-  // Update image when interaction or context changes
+    /* -------------------
+     Update image when interaction
+  ------------------- */
   React.useEffect(() => {
-    if (!imagesLoaded) return; // Wait until images are loaded
+    if (!imagesLoaded) return; 
 
     if (isMoving) {
       setCurrentImage(toggleMove);
@@ -53,14 +59,14 @@ function ToggleSwitch() {
     }
   }, [isHovered, isMoving, currentTemperatureUnit, imagesLoaded]);
 
-  // Handle click to toggle
+
   const handleClick = () => {
     handleToggleSwitchChange();
     setIsMoving(true);
     setTimeout(() => setIsMoving(false), 250);
   };
 
-  // Show nothing until images are loaded, or a simple fallback
+
   if (!imagesLoaded) {
     return (
       <div className="toggle toggle--loading">
@@ -81,7 +87,6 @@ function ToggleSwitch() {
         alt={`Temperature toggle (${currentTemperatureUnit})`}
         className="toggle__image"
         onError={(e) => {
-          // Fallback if image fails to load
           e.target.src = toggleF;
         }}
       />

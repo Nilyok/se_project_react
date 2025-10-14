@@ -24,7 +24,7 @@
 }
 
 /* -------------------
-   Left Section (logo + date)
+   Left Section 
 ------------------- */
 .header__left {
   display: flex;
@@ -51,7 +51,7 @@
 }
 
 /* -------------------
-   Right Section (button + user info)
+   Right Section 
 ------------------- */
 .header__right {
   display: flex;
@@ -237,7 +237,6 @@
 }
 
 @media (max-width: 768px) {
-  /* ✅ Ensure profile header ignores default mobile .header rules */
   .header.header--profile-mobile {
     display: flex;
     flex-direction: column;
@@ -248,7 +247,6 @@
     z-index: 20;
   }
 
-  /* ✅ Override the default .header__left mobile style */
   .header.header--profile-mobile .header__left {
     flex-direction: row;
     width: 100%;
@@ -264,7 +262,6 @@
     margin: 0;
   }
 
-  /* ✅ Slightly taller popup (profile only) */
   .header.header--profile .header__popup {
     height: 240px;
   }

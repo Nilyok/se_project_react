@@ -17,7 +17,6 @@ function Header({
   variant,
 }) {
   const navigate = useNavigate();
-  // ✅ dynamically track mobile/desktop state
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
@@ -31,7 +30,6 @@ function Header({
     day: "numeric",
   });
 
-  // ✅ dynamically apply classes
   const headerClasses = [
     "header",
     variant === "profile" ? "header--profile" : "",
@@ -103,12 +101,12 @@ function Header({
         <img src={mobileClose} alt="Close" />
       </button>
 
-      {/* 🧭 Make this part navigate to full profile page */}
+
       <div
         className="header__popup-line"
         onClick={() => {
-          onClosePopup();      // ✅ closes popup first
-          navigate("/profile"); // ✅ then navigates cleanly
+          onClosePopup();     
+          navigate("/profile"); 
         }}
         style={{ cursor: "pointer" }}
       >

@@ -16,7 +16,7 @@
 ------------------- */
 .profile__user {
   display: flex;
-  align-items: center; /* center them horizontally */
+  align-items: center; 
   justify-content: flex-start;
   gap: 12px;
 }
@@ -41,7 +41,7 @@
    Right Section (Title + Add button + Cards)
 ------------------- */
 .profile__content {
-  margin-left: 166px; /* distance from avatar section */
+  margin-left: 166px;
   width: 1015px;
   height: 676px;
   display: flex;
@@ -49,7 +49,6 @@
   padding-top: 16px;
 }
 
-/* Header row: Your items + Add new */
 .profile__header-row {
   display: flex;
   align-items: center;
@@ -79,7 +78,6 @@
   object-fit: contain;
 }
 
-/* Hide them by default (desktop) */
 .profile__tagline,
 .profile__logout {
   display: none;
@@ -90,7 +88,7 @@
 ------------------- */
 .clothes-section__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 per row */
+  grid-template-columns: repeat(3, 1fr); 
   gap: 20px;
   justify-items: center;
   margin-bottom: 80px;
@@ -108,14 +106,14 @@
   flex-wrap: wrap;
   align-items: center;
   margin: 0 0 16px 16px;
-  padding: 0;          /* remove top/bottom padding */
+  padding: 0;      
   }
 
   .profile__content {
-    margin: 0 auto;       /* center content */
+    margin: 0 auto;   
     padding: 0 0 24px 0;
-    width: 343px;         /* ✅ fixed container width */
-    height: auto;         /* let height adjust */
+    width: 343px;        
+    height: auto;      
   }
 
   .profile__user {
@@ -123,9 +121,9 @@
     align-items: stretch;
     gap: 20px;
     color: #00000099;
-    border-top: 1px solid rgba(0, 0, 0, 0.2);   /* ✅ top line */
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);/* ✅ bottom line */
-    padding: 20px 0 20px;              /* ✅ vertical padding */
+    border-top: 1px solid rgba(0, 0, 0, 0.2); 
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 20px 0 20px;           
     width: 343px;   
   }
 
