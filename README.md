@@ -14,7 +14,7 @@ It retrieves live weather data using the OpenWeather API, categorizes the temper
 
 ## 🎨 Design Reference
 
-**Figma:** [Sprint 10: WTWR Design](https://www.figma.com/file/DtojSwldenF9UPKQZd6RRb/Sprint-10%3A-WTWR)
+**Figma:** [Sprint 10: WTWR Design] (https://www.figma.com/design/dQLJwEKasIdspciJAJrCaf/Sprint-11_-WTWR?node-id=311-433&t=DCTuwMrtagL4uoFg-1)
 
 ---
 
