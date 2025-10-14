@@ -16,7 +16,6 @@
   align-items: center;
 }
 
-/* Close button (top-right) */
 .modal__close_type_delete {
   position: absolute;
   top: 20px;
@@ -26,7 +25,6 @@
   cursor: pointer;
 }
 
-/* Text */
 .modal__text-group {
   text-align: left;
   margin-bottom: 32px;
@@ -102,5 +100,17 @@
 
   .modal__buttons {
     max-width: 100%;
+  }
+
+  .modal__text-group {
+    margin-bottom: 0;
+  }
+
+  .modal__text-title {
+    flex-direction: column; /* Stack vertically instead of row */
+    text-align: center;     /* Center the text */
+    align-items: center;    /* Center content horizontally */
+    justify-content: center;
+    margin: 20px 0px 20px;
   }
 }

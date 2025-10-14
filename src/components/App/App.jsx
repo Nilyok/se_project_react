@@ -8,9 +8,9 @@ import Main from "../Main/Main";
 import Profile from "../Profile/Profile";
 import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/ItemModal";
-import { defaultClothingItems } from "../../utils/clothingItems";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal";
+import { getItems, addItem, deleteItem } from "../../utils/api";
 
 /* -------------------
    AppHeader Component (detects route variant)
@@ -41,39 +41,57 @@ function AppHeader({
 ------------------- */
 function AppContent() {
   const [weatherData, setWeatherData] = useState(null);
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState(null);
   const [isHeaderPopupOpen, setIsHeaderPopupOpen] = useState(false);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [cardToDelete, setCardToDelete] = useState(null);
 
-  // Fetch Weather on Mount
+  /* -------------------
+     Fetch Weather + Items on Mount
+  ------------------- */
   useEffect(() => {
     getWeather()
       .then((data) => setWeatherData(data))
       .catch((err) => console.error(err));
   }, []);
 
-  // Toggle °F/°C
+  useEffect(() => {
+    getItems()
+      .then((items) => setClothingItems(items))
+      .catch((err) => console.error("Error loading items:", err));
+  }, []);
+
+  /* -------------------
+     Toggle °F/°C
+  ------------------- */
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit((prev) => (prev === "F" ? "C" : "F"));
   };
 
-  // Add New Item
+  /* -------------------
+     Add New Item (POST)
+  ------------------- */
   function handleAddItemSubmit(item, resetForm) {
     const newItem = {
-      _id: crypto.randomUUID(),
       name: item.name,
-      link: item.imageUrl,
+      imageUrl: item.imageUrl,
       weather: item.weather,
     };
-    setClothingItems((prev) => [newItem, ...prev]);
-    resetForm();
-    handleCloseModal();
+
+    addItem(newItem)
+      .then((savedItem) => {
+        setClothingItems((prev) => [savedItem, ...prev]);
+        resetForm();
+        handleCloseModal();
+      })
+      .catch((err) => console.error("Add item error:", err));
   }
 
-  // Modal & Popup
+  /* -------------------
+     Modal & Popup
+  ------------------- */
   function handleAddClothesClick() {
     setActiveModal("addClothes");
     setIsHeaderPopupOpen(false);
@@ -89,21 +107,29 @@ function AppContent() {
     setSelectedCard(null);
   }
 
-  // Delete Confirmation
+  /* -------------------
+     Delete Confirmation (DELETE)
+  ------------------- */
   function openDeleteConfirmation(card) {
     setCardToDelete(card);
     setActiveModal("confirmDelete");
   }
 
   function handleCardDelete() {
-    setClothingItems((prev) =>
-      prev.filter((item) => item._id !== cardToDelete._id)
-    );
-    setCardToDelete(null);
-    handleCloseModal();
+    deleteItem(cardToDelete._id)
+      .then(() => {
+        setClothingItems((prev) =>
+          prev.filter((item) => item._id !== cardToDelete._id)
+        );
+        setCardToDelete(null);
+        handleCloseModal();
+      })
+      .catch((err) => console.error("Delete item error:", err));
   }
 
-  // Escape Close
+  /* -------------------
+     Escape Close
+  ------------------- */
   useEffect(() => {
     if (!activeModal) return;
     const handleEscClose = (e) => e.key === "Escape" && handleCloseModal();
@@ -111,6 +137,9 @@ function AppContent() {
     return () => document.removeEventListener("keydown", handleEscClose);
   }, [activeModal]);
 
+  /* -------------------
+     Render
+  ------------------- */
   return (
     <CurrentTemperatureUnitContext.Provider
       value={{
@@ -141,17 +170,17 @@ function AppContent() {
               )
             }
           />
-        <Route
-          path="/profile"
-          element={
-            <Profile
-              clothingItems={clothingItems}
-              onAddClothesClick={handleAddClothesClick}
-              onCardClick={handleCardClick}          // ✅ preview modal
-              onDelete={openDeleteConfirmation}      // ✅ delete confirmation modal
-            />
-          }
-        />
+          <Route
+            path="/profile"
+            element={
+              <Profile
+                clothingItems={clothingItems}
+                onAddClothesClick={handleAddClothesClick}
+                onCardClick={handleCardClick}
+                onDelete={openDeleteConfirmation}
+              />
+            }
+          />
         </Routes>
 
         <Footer />
@@ -179,7 +208,7 @@ function AppContent() {
 }
 
 /* -------------------
-   Browser Wrapper (fix for useLocation)
+   Browser Wrapper
 ------------------- */
 function App() {
   return (

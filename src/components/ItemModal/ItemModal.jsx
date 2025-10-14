@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import "./ItemModal.css";
 import closeIcon from "../../images/Preview-Close.svg";
+import notFoundImage from "../../images/Image-NotFound.svg";
+
 
 function ItemModal({ isOpen, onClose, card, onDelete }) {
   /* -------------------
@@ -40,11 +42,13 @@ function ItemModal({ isOpen, onClose, card, onDelete }) {
           <img src={closeIcon} alt="Close" className="modal__close-icon" />
         </button>
 
-        <img src={card.link} alt={card.name} className="modal__image" />
+        <img
+          src={card.imageUrl}
+          alt={card.name}
+          className="modal__image"
+          onError={(e) => (e.target.src = notFoundImage)}
+        />
 
-        {/* -------------------
-            Title + Delete Button Row
-        ------------------- */}
         <div className="modal__caption-row">
           <p className="modal__title">{card.name}</p>
           <button
