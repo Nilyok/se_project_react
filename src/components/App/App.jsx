@@ -82,11 +82,37 @@ function AppContent() {
 
     addItem(newItem)
       .then((savedItem) => {
+        // ✅ Add new item at the top
         setClothingItems((prev) => [savedItem, ...prev]);
         resetForm();
         handleCloseModal();
       })
       .catch((err) => console.error("Add item error:", err));
+  }
+
+  /* -------------------
+     Delete Confirmation
+  ------------------- */
+  function openDeleteConfirmation(card) {
+    setCardToDelete(card);
+    setActiveModal("confirmDelete");
+  }
+
+  function handleCardDelete() {
+    if (!cardToDelete) return;
+    deleteItem(cardToDelete.id || cardToDelete._id)
+      .then(() => {
+        // ✅ Remove deleted card from list
+        setClothingItems((prev) =>
+          prev.filter(
+            (item) =>
+              item.id !== cardToDelete.id && item._id !== cardToDelete._id
+          )
+        );
+        setCardToDelete(null);
+        handleCloseModal();
+      })
+      .catch((err) => console.error("Delete item error:", err));
   }
 
   /* -------------------
@@ -105,26 +131,6 @@ function AppContent() {
   function handleCloseModal() {
     setActiveModal("");
     setSelectedCard(null);
-  }
-
-  /* -------------------
-     Delete Confirmation
-  ------------------- */
-  function openDeleteConfirmation(card) {
-    setCardToDelete(card);
-    setActiveModal("confirmDelete");
-  }
-
-  function handleCardDelete() {
-    deleteItem(cardToDelete._id)
-      .then(() => {
-        setClothingItems((prev) =>
-          prev.filter((item) => item._id !== cardToDelete._id)
-        );
-        setCardToDelete(null);
-        handleCloseModal();
-      })
-      .catch((err) => console.error("Delete item error:", err));
   }
 
   /* -------------------

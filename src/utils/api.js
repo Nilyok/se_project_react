@@ -47,6 +47,7 @@ export const addItem = (item) => {
    Delete an item by ID
 ------------------- */
 export const deleteItem = (id) => {
+  console.log("Deleting item with ID:", id);
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
   })

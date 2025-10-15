@@ -13,3 +13,10 @@
 .clothes-section__more:hover {
   background: rgba(0, 0, 0, 0.05);
 }
+
+.clothes-section__grid {
+  transition: all 0.3s ease;
+}
+.item-card {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
