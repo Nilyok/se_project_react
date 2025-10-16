@@ -13,7 +13,6 @@ export const getItems = () => {
       return res.json();
     })
     .catch((err) => {
-      console.error("Fetch GET error:", err);
       throw err;
     });
 };

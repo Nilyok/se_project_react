@@ -7,7 +7,7 @@
   justify-content: flex-start;
   width: 100%;
   max-width: 1360px;
-  padding: 40px 0 0 385px; 
+  padding: 40px 0 0 385px;
   box-sizing: border-box;
 }
 
@@ -21,7 +21,6 @@
   width: 100%;
 }
 
-
 .sidebar__avatar {
   width: 56px;
   height: 56px;
@@ -30,16 +29,14 @@
   margin-right: 20px;
 }
 
-
 .sidebar__username {
   font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-weight: 700;
   font-size: 20px;
   line-height: 100%;
   color: #000;
-  margin-right: 166px; 
+  margin-right: 166px;
 }
-
 
 .sidebar__title {
   font-family: "Cabinet Grotesk", Arial, sans-serif;
@@ -47,9 +44,8 @@
   font-size: 20px;
   line-height: 100%;
   color: #000;
-  margin-right: 20px; 
+  margin-right: 20px;
 }
-
 
 .sidebar__add-button {
   background: none;

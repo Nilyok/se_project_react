@@ -39,8 +39,9 @@ const weatherImages = {
 
 function WeatherCard({ temperature, condition, timeOfDay }) {
   const imageSrc = weatherImages[timeOfDay]?.[condition] || DaySunny;
-  const { currentTemperatureUnit } = React.useContext(CurrentTemperatureUnitContext);
-
+  const { currentTemperatureUnit } = React.useContext(
+    CurrentTemperatureUnitContext,
+  );
 
   if (!temperature) {
     return (

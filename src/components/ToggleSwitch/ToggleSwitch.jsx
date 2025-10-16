@@ -9,19 +9,19 @@ import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperature
 function ToggleSwitch() {
   const context = React.useContext(CurrentTemperatureUnitContext);
   const currentTemperatureUnit = context?.currentTemperatureUnit || "F";
-  const handleToggleSwitchChange = context?.handleToggleSwitchChange || (() => {});
+  const handleToggleSwitchChange =
+    context?.handleToggleSwitchChange || (() => {});
 
   const [isHovered, setIsHovered] = React.useState(false);
   const [isMoving, setIsMoving] = React.useState(false);
   const [imagesLoaded, setImagesLoaded] = React.useState(false);
-
 
   /* -------------------
      Preload all images
   ------------------- */
   React.useEffect(() => {
     const imageUrls = [toggleF, toggleHover, toggleMove, toggleC];
-    const imagePromises = imageUrls.map(src => {
+    const imagePromises = imageUrls.map((src) => {
       return new Promise((resolve, reject) => {
         const img = new Image();
         img.src = src;
@@ -32,21 +32,21 @@ function ToggleSwitch() {
 
     Promise.all(imagePromises)
       .then(() => setImagesLoaded(true))
-      .catch(err => console.error('Failed to load images:', err));
+      .catch((err) => console.error("Failed to load images:", err));
   }, []);
 
-    /* -------------------
+  /* -------------------
      Default image
   ------------------- */
   const [currentImage, setCurrentImage] = React.useState(
-  currentTemperatureUnit === "C" ? toggleC : toggleF
-);
+    currentTemperatureUnit === "C" ? toggleC : toggleF,
+  );
 
-    /* -------------------
+  /* -------------------
      Update image when interaction
   ------------------- */
   React.useEffect(() => {
-    if (!imagesLoaded) return; 
+    if (!imagesLoaded) return;
 
     if (isMoving) {
       setCurrentImage(toggleMove);
@@ -59,13 +59,11 @@ function ToggleSwitch() {
     }
   }, [isHovered, isMoving, currentTemperatureUnit, imagesLoaded]);
 
-
   const handleClick = () => {
     handleToggleSwitchChange();
     setIsMoving(true);
     setTimeout(() => setIsMoving(false), 250);
   };
-
 
   if (!imagesLoaded) {
     return (

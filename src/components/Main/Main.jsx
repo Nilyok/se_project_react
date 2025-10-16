@@ -5,7 +5,9 @@ import ItemCard from "../ItemCard/ItemCard";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 function Main({ weatherData, clothingItems, onCardClick }) {
-  const { currentTemperatureUnit } = React.useContext(CurrentTemperatureUnitContext);
+  const { currentTemperatureUnit } = React.useContext(
+    CurrentTemperatureUnitContext,
+  );
 
   /* -------------------
      Normalize weather type
@@ -32,13 +34,11 @@ function Main({ weatherData, clothingItems, onCardClick }) {
     (item) =>
       !item.weather ||
       !["hot", "warm", "cold"].includes(currentType) ||
-      item.weather.toLowerCase() === currentType
+      item.weather.toLowerCase() === currentType,
   );
 
   console.log("🧥 clothingItems from server:", clothingItems);
   console.log("🌡 currentType:", currentType);
-
-
 
   /* -------------------
      Render

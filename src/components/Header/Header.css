@@ -17,7 +17,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 32px 40px 0;
-  height: 40px; 
+  height: 40px;
   max-width: 1440px;
   margin: 0 auto;
   width: 100%;
@@ -233,7 +233,6 @@
   .header__popup-close:hover {
     opacity: 0.6;
   }
-  
 }
 
 @media (max-width: 768px) {
@@ -265,5 +264,4 @@
   .header.header--profile .header__popup {
     height: 240px;
   }
-  
 }

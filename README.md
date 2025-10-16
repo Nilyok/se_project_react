@@ -1,4 +1,5 @@
 # 🧥 WTWR — What To Wear?
+
 ![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-yellow?logo=javascript&logoColor=white)
@@ -24,24 +25,26 @@ It retrieves live weather data using the OpenWeather API, categorizes the temper
 ---
 
 ## 🚀 Features
+
 ```bash
-- 🌤 **Real-Time Weather:** Fetches current data by latitude & longitude  
-- 👕 **Smart Recommendations:** Displays clothing items filtered by weather type  
-- 🧾 **Item Management:** Add, preview, and delete clothing items via modals  
-- 🪟 **Responsive UI:** Works seamlessly on both desktop and mobile  
-- ⚙️ **API Integration:** Uses JSON Server and OpenWeather for mock + live data  
+- 🌤 **Real-Time Weather:** Fetches current data by latitude & longitude
+- 👕 **Smart Recommendations:** Displays clothing items filtered by weather type
+- 🧾 **Item Management:** Add, preview, and delete clothing items via modals
+- 🪟 **Responsive UI:** Works seamlessly on both desktop and mobile
+- ⚙️ **API Integration:** Uses JSON Server and OpenWeather for mock + live data
 ```
+
 ---
 
 ## 🛠️ Tech Stack
 
-| Category | Tools |
-|-----------|-------|
+| Category               | Tools                                             |
+| ---------------------- | ------------------------------------------------- |
 | **Frontend Framework** | React (Functional Components, Hooks, Context API) |
-| **Styling** | CSS3, Flexbox, Grid, BEM Methodology |
-| **Language** | JavaScript (ES6+) |
-| **Build Tool** | Vite |
-| **API Services** | JSON Server (Mock API), OpenWeather API |
+| **Styling**            | CSS3, Flexbox, Grid, BEM Methodology              |
+| **Language**           | JavaScript (ES6+)                                 |
+| **Build Tool**         | Vite                                              |
+| **API Services**       | JSON Server (Mock API), OpenWeather API           |
 
 ---
 

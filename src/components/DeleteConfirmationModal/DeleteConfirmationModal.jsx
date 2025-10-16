@@ -5,7 +5,9 @@ function DeleteConfirmationModal({ isOpen, onClose, onConfirm }) {
   if (!isOpen) return null;
 
   return (
-    <div className={`modal modal_type_delete ${isOpen ? "modal_is-opened" : ""}`}>
+    <div
+      className={`modal modal_type_delete ${isOpen ? "modal_is-opened" : ""}`}
+    >
       <div className="modal__overlay" onClick={onClose}></div>
 
       <div
@@ -26,9 +28,7 @@ function DeleteConfirmationModal({ isOpen, onClose, onConfirm }) {
           <p className="modal__text-title">
             Are you sure you want to delete this item?
           </p>
-          <p className="modal__text-sub">
-            This action is irreversible.
-          </p>
+          <p className="modal__text-sub">This action is irreversible.</p>
         </div>
 
         {/* Buttons */}

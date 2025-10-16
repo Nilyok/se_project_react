@@ -8,5 +8,5 @@ import App from "./components/App/App.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <App />
-  </StrictMode>
+  </StrictMode>,
 );

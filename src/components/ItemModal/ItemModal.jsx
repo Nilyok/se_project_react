@@ -3,7 +3,6 @@ import "./ItemModal.css";
 import closeIcon from "../../images/Preview-Close.svg";
 import notFoundImage from "../../images/Image-NotFound.svg";
 
-
 function ItemModal({ isOpen, onClose, card, onDelete }) {
   /* -------------------
      Close on ESC + Overlay
@@ -51,11 +50,7 @@ function ItemModal({ isOpen, onClose, card, onDelete }) {
 
         <div className="modal__caption-row">
           <p className="modal__title">{card.name}</p>
-          <button
-            type="button"
-            className="modal__delete"
-            onClick={onDelete}
-          >
+          <button type="button" className="modal__delete" onClick={onDelete}>
             Delete item
           </button>
         </div>

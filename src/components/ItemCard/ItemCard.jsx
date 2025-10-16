@@ -1,7 +1,6 @@
 import "./ItemCard.css";
 import notFoundImage from "../../images/Image-NotFound.svg";
 
-
 function ItemCard({ item, onCardClick }) {
   return (
     <div className="item-card" onClick={() => onCardClick(item)}>

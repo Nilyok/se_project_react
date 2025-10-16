@@ -7,7 +7,6 @@ import mobileClose from "../../images/Mobile-Close-Button.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link, useNavigate } from "react-router-dom";
 
-
 function Header({
   location,
   onAddClothesClick,
@@ -55,7 +54,11 @@ function Header({
       {/* -------------------
           Mobile button
       ------------------- */}
-      <button type="button" className="header__mobile-btn" onClick={onOpenPopup}>
+      <button
+        type="button"
+        className="header__mobile-btn"
+        onClick={onOpenPopup}
+      >
         <img src={mobileBtn} alt="Menu" />
       </button>
 
@@ -73,7 +76,7 @@ function Header({
               onClosePopup();
             }}
           >
-            + Add clothes
+            + Add Clothes
           </button>
           <div className="header__user">
             <Link to="/profile" className="header__username">
@@ -87,53 +90,55 @@ function Header({
       {/* -------------------
           Mobile popup
       ------------------- */}
-{isPopupOpen && (
-  <div className="header__overlay" onClick={onClosePopup}>
-    <div
-      className="header__popup header__popup--open"
-      onClick={(e) => e.stopPropagation()}
-    >
-      <button
-        type="button"
-        className="header__popup-close"
-        onClick={onClosePopup}
-      >
-        <img src={mobileClose} alt="Close" />
-      </button>
+      {isPopupOpen && (
+        <div className="header__overlay" onClick={onClosePopup}>
+          <div
+            className="header__popup header__popup--open"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="header__popup-close"
+              onClick={onClosePopup}
+            >
+              <img src={mobileClose} alt="Close" />
+            </button>
 
+            <div
+              className="header__popup-line"
+              onClick={() => {
+                onClosePopup();
+                navigate("/profile");
+              }}
+              style={{ cursor: "pointer" }}
+            >
+              <p className="header__popup-username">Terrence Tegegne</p>
+              <img
+                src={avatar}
+                alt="User Avatar"
+                className="header__popup-avatar"
+              />
+            </div>
 
-      <div
-        className="header__popup-line"
-        onClick={() => {
-          onClosePopup();     
-          navigate("/profile"); 
-        }}
-        style={{ cursor: "pointer" }}
-      >
-        <p className="header__popup-username">Terrence Tegegne</p>
-        <img src={avatar} alt="User Avatar" className="header__popup-avatar" />
-      </div>
+            <button
+              type="button"
+              className="header__popup-add-btn"
+              onClick={() => {
+                onAddClothesClick();
+                onClosePopup();
+              }}
+            >
+              + Add Clothes
+            </button>
 
-      <button
-        type="button"
-        className="header__popup-add-btn"
-        onClick={() => {
-          onAddClothesClick();
-          onClosePopup();
-        }}
-      >
-        + Add clothes
-      </button>
-
-      {variant === "profile" && (
-        <div className="header__popup-temp">
-          <ToggleSwitch />
+            {variant === "profile" && (
+              <div className="header__popup-temp">
+                <ToggleSwitch />
+              </div>
+            )}
+          </div>
         </div>
       )}
-    </div>
-  </div>
-)}
-
     </header>
   );
 }

@@ -75,6 +75,8 @@ function AppContent() {
   ------------------- */
   function handleAddItemSubmit(item, resetForm) {
     const newItem = {
+      _id: Date.now(),
+      id: Date.now(),
       name: item.name,
       imageUrl: item.imageUrl,
       weather: item.weather,
@@ -82,7 +84,6 @@ function AppContent() {
 
     addItem(newItem)
       .then((savedItem) => {
-        // ✅ Add new item at the top
         setClothingItems((prev) => [savedItem, ...prev]);
         resetForm();
         handleCloseModal();
@@ -106,8 +107,8 @@ function AppContent() {
         setClothingItems((prev) =>
           prev.filter(
             (item) =>
-              item.id !== cardToDelete.id && item._id !== cardToDelete._id
-          )
+              item.id !== cardToDelete.id && item._id !== cardToDelete._id,
+          ),
         );
         setCardToDelete(null);
         handleCloseModal();

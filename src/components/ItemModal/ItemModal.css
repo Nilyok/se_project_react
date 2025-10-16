@@ -42,7 +42,6 @@
   opacity: 0.6;
 }
 
-
 /* -------------------
    Image
 ------------------- */
@@ -84,7 +83,7 @@
   .modal__content_type_preview {
     width: 343px;
     max-height: 463px;
-    height: auto;     
+    height: auto;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -110,4 +109,3 @@
     padding: 20px;
   }
 }
-

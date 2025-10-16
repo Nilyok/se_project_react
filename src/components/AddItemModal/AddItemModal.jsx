@@ -22,7 +22,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
         imageUrl: values.imageUrl,
         weather: values.weather,
       },
-      resetForm
+      resetForm,
     );
   };
 
@@ -32,14 +32,14 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
   return (
     <ModalWithForm
       isOpen={isOpen}
-        onClose={onCloseModal}
-        name="add-garment"
-        title="New garment"
-        buttonText="Add garment"
-        onSubmit={handleSubmit}
-        isSubmitDisabled={
-         !values.name.trim() || !values.imageUrl.trim() || !values.weather.trim()
-        }
+      onClose={onCloseModal}
+      name="add-garment"
+      title="New garment"
+      buttonText="Add garment"
+      onSubmit={handleSubmit}
+      isSubmitDisabled={
+        !values.name.trim() || !values.imageUrl.trim() || !values.weather.trim()
+      }
     >
       <label className="modal__label">
         Name

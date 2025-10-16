@@ -46,7 +46,6 @@
    Mobile
 ------------------- */
 @media (max-width: 768px) {
-
   .weather-card {
     width: 100%;
     max-width: 343px;
@@ -54,6 +53,6 @@
   }
   .weather-card__background {
     object-fit: cover;
-    object-position: right center; 
+    object-position: right center;
   }
 }

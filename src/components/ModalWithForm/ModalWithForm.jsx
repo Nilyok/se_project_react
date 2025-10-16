@@ -57,11 +57,7 @@ function ModalWithForm({
           <h2 className="modal__title">{title}</h2>
 
           {name === "preview" && (
-            <button
-              type="button"
-              className="modal__delete"
-              onClick={onDelete}
-            >
+            <button type="button" className="modal__delete" onClick={onDelete}>
               Delete item
             </button>
           )}
