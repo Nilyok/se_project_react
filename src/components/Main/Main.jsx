@@ -14,14 +14,13 @@ function Main({ weatherData, clothingItems, onCardClick }) {
      (ensure it's always "hot", "warm", or "cold")
   ------------------- */
   const normalizeWeatherType = (type) => {
-    if (!type) return "warm"; // fallback
+    if (!type) return "warm"; 
     const lower = type.toLowerCase();
 
-    // Map any API conditions to our 3 main categories
     if (["hot", "sunny", "clear"].includes(lower)) return "hot";
     if (["warm", "mild", "clouds"].includes(lower)) return "warm";
     if (["cold", "snow", "rain"].includes(lower)) return "cold";
-    return "warm"; // fallback if unknown
+    return "warm"; 
   };
 
   const currentType = normalizeWeatherType(weatherData.type);
@@ -37,8 +36,6 @@ function Main({ weatherData, clothingItems, onCardClick }) {
       item.weather.toLowerCase() === currentType,
   );
 
-  console.log("🧥 clothingItems from server:", clothingItems);
-  console.log("🌡 currentType:", currentType);
 
   /* -------------------
      Render

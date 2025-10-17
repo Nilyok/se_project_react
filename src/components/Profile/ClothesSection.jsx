@@ -2,7 +2,6 @@ import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
 
 function ClothesSection({ clothingItems, onCardClick, onDelete }) {
-  // Sort items newest-first (no need for reverse if your array already has new first)
   const visibleItems = clothingItems.slice(0, 6);
 
   return (

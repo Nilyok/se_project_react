@@ -75,7 +75,6 @@ function AppContent() {
   ------------------- */
   function handleAddItemSubmit(item, resetForm) {
     const newItem = {
-      _id: Date.now(),
       id: Date.now(),
       name: item.name,
       imageUrl: item.imageUrl,
@@ -101,14 +100,10 @@ function AppContent() {
 
   function handleCardDelete() {
     if (!cardToDelete) return;
-    deleteItem(cardToDelete.id || cardToDelete._id)
+    deleteItem(cardToDelete.id)
       .then(() => {
-        // ✅ Remove deleted card from list
         setClothingItems((prev) =>
-          prev.filter(
-            (item) =>
-              item.id !== cardToDelete.id && item._id !== cardToDelete._id,
-          ),
+          prev.filter((item) => item.id !== cardToDelete.id)
         );
         setCardToDelete(null);
         handleCloseModal();
@@ -155,7 +150,6 @@ function AppContent() {
       }}
     >
       <div className="page">
-        {/* variant Header */}
         <AppHeader
           weatherData={weatherData}
           onAddClothesClick={handleAddClothesClick}
@@ -163,7 +157,6 @@ function AppContent() {
           setIsHeaderPopupOpen={setIsHeaderPopupOpen}
         />
 
-        {/* Routes */}
         <Routes>
           <Route
             path="/"
@@ -192,7 +185,6 @@ function AppContent() {
 
         <Footer />
 
-        {/* Modals */}
         <AddItemModal
           isOpen={activeModal === "addClothes"}
           onAddItem={handleAddItemSubmit}

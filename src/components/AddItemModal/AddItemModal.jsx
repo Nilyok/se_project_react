@@ -8,27 +8,20 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
     weather: "",
   });
 
-  /* -------------------
-     Handle Form Submit
-  ------------------- */
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (!values.name || !values.imageUrl || !values.weather) return;
 
     onAddItem(
       {
-        name: values.name,
-        imageUrl: values.imageUrl,
+        name: values.name.trim(),
+        imageUrl: values.imageUrl.trim(),
         weather: values.weather,
       },
-      resetForm,
+      resetForm
     );
   };
 
-  /* -------------------
-     Render Modal
-  ------------------- */
   return (
     <ModalWithForm
       isOpen={isOpen}

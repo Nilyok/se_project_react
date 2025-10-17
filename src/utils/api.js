@@ -1,8 +1,7 @@
 const baseUrl = "http://localhost:3001";
 
 /* -------------------
-   GET 
-   Fetch all clothing items from the mock server
+   GET - Fetch all clothing items
 ------------------- */
 export const getItems = () => {
   return fetch(`${baseUrl}/items`)
@@ -13,13 +12,13 @@ export const getItems = () => {
       return res.json();
     })
     .catch((err) => {
+      console.error("Fetch GET error:", err);
       throw err;
     });
 };
 
 /* -------------------
-   POST
-   Add a new clothing item
+   POST - Add a new clothing item
 ------------------- */
 export const addItem = (item) => {
   return fetch(`${baseUrl}/items`, {
@@ -42,11 +41,9 @@ export const addItem = (item) => {
 };
 
 /* -------------------
-   DELETE 
-   Delete an item by ID
+   DELETE - Remove an item by ID
 ------------------- */
 export const deleteItem = (id) => {
-  console.log("Deleting item with ID:", id);
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
   })
@@ -54,7 +51,9 @@ export const deleteItem = (id) => {
       if (!res.ok) {
         throw new Error(`Error deleting item: ${res.status}`);
       }
-      return res.json();
+      // json-server returns 200 with an empty object or 204 with no content
+      // Prevent .json() crash by safely handling empty response
+      return res.text().then((text) => (text ? JSON.parse(text) : {}));
     })
     .catch((err) => {
       console.error("Fetch DELETE error:", err);

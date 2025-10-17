@@ -6,6 +6,8 @@
 ![CSS3](https://img.shields.io/badge/CSS3-blue?logo=css3&logoColor=white)
 ![Status](https://img.shields.io/badge/Project-Complete-brightgreen)
 
+[🎥 **Watch Project Pitch**](https://drive.google.com/file/d/12tSrhbzfOoDGeTcuvFfMrZ7QL0BnNA0d/view?usp=sharing)
+
 A weather-based clothing recommendation app built with React.  
 It fetches real-time weather data and suggests clothing items based on temperature and conditions.
 
@@ -20,7 +22,8 @@ It retrieves live weather data using the OpenWeather API, categorizes the temper
 
 ## 🎨 Design Reference
 
-**Figma:** [Sprint 11: WTWR Design] (https://www.figma.com/design/dQLJwEKasIdspciJAJrCaf/Sprint-11_-WTWR?node-id=311-433&t=DCTuwMrtagL4uoFg-1)
+**Figma:** [Sprint 11: WTWR Design](https://www.figma.com/design/dQLJwEKasIdspciJAJrCaf/Sprint-11_-WTWR?node-id=311-433&t=DCTuwMrtagL4uoFg-1)
+
 
 ---
 
