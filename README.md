@@ -6,7 +6,7 @@
 ![CSS3](https://img.shields.io/badge/CSS3-blue?logo=css3&logoColor=white)
 ![Status](https://img.shields.io/badge/Project-Complete-brightgreen)
 
-[🎥 **Watch Project Pitch**](https://drive.google.com/file/d/12tSrhbzfOoDGeTcuvFfMrZ7QL0BnNA0d/view?usp=sharing)
+🎥 [**Watch Project Pitch (Click!)**](https://drive.google.com/file/d/12tSrhbzfOoDGeTcuvFfMrZ7QL0BnNA0d/view?usp=sharing)
 
 A weather-based clothing recommendation app built with React.  
 It fetches real-time weather data and suggests clothing items based on temperature and conditions.
