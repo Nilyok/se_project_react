@@ -98,16 +98,18 @@
    Sidebar Wrapper 
    (make sure it stay invisible on large screens)
 ------------------- */
-.profile__sidebar-wrapper {
-  display: none; 
+/* -------------------
+   Hide Sidebar (still included in DOM)
+------------------- */
+.profile__sidebar-hidden {
+  display: none !important;
+  visibility: hidden;
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
 }
 
-@media (min-width: 1280px) {
-  .profile__sidebar-wrapper {
-    display: block;
-    width: 100%;
-  }
-}
 
 /* -------------------
    Mobile

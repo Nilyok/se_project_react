@@ -1,4 +1,5 @@
 import "./Profile.css";
+import SideBar from "./SideBar";
 import avatar from "../../images/User-Avartar-Header.png";
 import addNewIcon from "../../images/Profile-AddNew.svg";
 import ClothesSection from "./ClothesSection";
@@ -6,8 +7,12 @@ import ClothesSection from "./ClothesSection";
 function Profile({ clothingItems, onAddClothesClick, onCardClick, onDelete }) {
   return (
     <section className="profile">
+      <div className="profile__sidebar-visible">
+        <SideBar onAddClothesClick={onAddClothesClick} />
+      </div>
+
       {/* -------------------
-          Profile Header Section
+          Main Profile Section (Left)
       ------------------- */}
       <div className="profile__user">
         <img src={avatar} alt="User Avatar" className="profile__avatar" />
@@ -20,7 +25,7 @@ function Profile({ clothingItems, onAddClothesClick, onCardClick, onDelete }) {
       </div>
 
       {/* -------------------
-          User Items Section
+          Main Profile Section (Right)
       ------------------- */}
       <div className="profile__content">
         <div className="profile__header-row">

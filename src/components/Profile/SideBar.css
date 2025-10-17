@@ -1,5 +1,5 @@
 /* -------------------
-   Sidebar Base
+  Sidebar Base
 ------------------- */
 .sidebar {
   display: flex;
@@ -12,7 +12,7 @@
 }
 
 /* -------------------
-   Row: Avatar + Name + Add Button
+  Avatar + Name + Add Button
 ------------------- */
 .sidebar__row {
   display: flex;
