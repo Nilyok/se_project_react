@@ -95,6 +95,21 @@
 }
 
 /* -------------------
+   Sidebar Wrapper 
+   (make sure it stay invisible on large screens)
+------------------- */
+.profile__sidebar-wrapper {
+  display: none; 
+}
+
+@media (min-width: 1280px) {
+  .profile__sidebar-wrapper {
+    display: block;
+    width: 100%;
+  }
+}
+
+/* -------------------
    Mobile
 ------------------- */
 @media (max-width: 768px) {
