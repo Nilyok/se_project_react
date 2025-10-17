@@ -91,19 +91,22 @@ function AppContent() {
   }
 
   /* -------------------
-     Delete Confirmation
+   Open Delete Confirmation
   ------------------- */
   function openDeleteConfirmation(card) {
     setCardToDelete(card);
     setActiveModal("confirmDelete");
   }
 
+  /* -------------------
+     Delete Confirmation
+  ------------------- */
   function handleCardDelete() {
     if (!cardToDelete) return;
-    deleteItem(cardToDelete.id)
+    deleteItem(cardToDelete._id)
       .then(() => {
         setClothingItems((prev) =>
-          prev.filter((item) => item.id !== cardToDelete.id)
+          prev.filter((item) => item._id !== cardToDelete._id)
         );
         setCardToDelete(null);
         handleCloseModal();

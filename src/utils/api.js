@@ -1,4 +1,5 @@
 const baseUrl = "http://localhost:3001";
+import { normalizeItems, normalizeItem } from './normalize';
 
 /* -------------------
    GET - Fetch all clothing items
@@ -11,6 +12,7 @@ export const getItems = () => {
       }
       return res.json();
     })
+    .then(normalizeItems)
     .catch((err) => {
       console.error("Fetch GET error:", err);
       throw err;
@@ -34,6 +36,7 @@ export const addItem = (item) => {
       }
       return res.json();
     })
+    .then(normalizeItem)
     .catch((err) => {
       console.error("Fetch POST error:", err);
       throw err;
@@ -41,7 +44,7 @@ export const addItem = (item) => {
 };
 
 /* -------------------
-   DELETE - Remove an item by ID
+   DELETE - Remove ID
 ------------------- */
 export const deleteItem = (id) => {
   return fetch(`${baseUrl}/items/${id}`, {
@@ -51,9 +54,7 @@ export const deleteItem = (id) => {
       if (!res.ok) {
         throw new Error(`Error deleting item: ${res.status}`);
       }
-      // json-server returns 200 with an empty object or 204 with no content
-      // Prevent .json() crash by safely handling empty response
-      return res.text().then((text) => (text ? JSON.parse(text) : {}));
+      return res.json(); 
     })
     .catch((err) => {
       console.error("Fetch DELETE error:", err);

@@ -95,20 +95,20 @@
 }
 
 /* -------------------
-   Sidebar Wrapper 
-   (make sure it stay invisible on large screens)
+   Sidebar - Visually Hidden but in DOM
 ------------------- */
-/* -------------------
-   Hide Sidebar (still included in DOM)
-------------------- */
-.profile__sidebar-hidden {
-  display: none !important;
-  visibility: hidden;
-  position: absolute;
-  width: 0;
-  height: 0;
-  overflow: hidden;
+.profile__sidebar-visible {
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
+
 
 
 /* -------------------
@@ -177,5 +177,18 @@
   .profile__tagline,
   .profile__logout {
     display: block;
+  }
+
+    /* Keep sidebar hidden on mobile too */
+  .profile__sidebar-visible {
+    position: absolute !important;
+    left: -9999px !important;
+    top: -9999px !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
   }
 }

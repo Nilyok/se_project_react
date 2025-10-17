@@ -46,7 +46,7 @@
   width: 100%;
   box-sizing: border-box;
   margin-top: 8px;
-  font-size: 16x;
+  font-size: 16px;
   font-family: inherit;
 }
 
@@ -112,7 +112,7 @@
 }
 
 /* -------------------
-   Title + Delete Link Row
+   Title + Delete 
 ------------------- */
 .modal__title-row {
   display: flex;
@@ -234,25 +234,9 @@
 }
 
 /* -------------------
-   Mobile (≤768px)
+   Mobile
 ------------------- */
 @media (max-width: 768px) {
-  .modal_type_form .modal__content {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    max-width: none;
-    max-height: auto;
-    margin: 0 auto;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    border-radius: 12px 12px 0 0;
-    padding: 20px;
-    box-sizing: border-box;
-    z-index: 2;
-  }
-
   .modal__content_type_add-garment {
     padding: 16px 16px 16px;
     position: fixed;
