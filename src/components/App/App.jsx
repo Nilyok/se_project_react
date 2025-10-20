@@ -75,7 +75,6 @@ function AppContent() {
   ------------------- */
   function handleAddItemSubmit(item, resetForm) {
     const newItem = {
-      id: Date.now(),
       name: item.name,
       imageUrl: item.imageUrl,
       weather: item.weather,
@@ -103,16 +102,18 @@ function AppContent() {
   ------------------- */
   function handleCardDelete() {
     if (!cardToDelete) return;
-    deleteItem(cardToDelete._id)
+    const id = cardToDelete._id || cardToDelete.id;
+    deleteItem(id)
       .then(() => {
         setClothingItems((prev) =>
-          prev.filter((item) => item._id !== cardToDelete._id)
+          prev.filter((item) => item._id !== id && item.id !== id)
         );
         setCardToDelete(null);
         handleCloseModal();
       })
       .catch((err) => console.error("Delete item error:", err));
   }
+
 
   /* -------------------
      Modal & Popup
