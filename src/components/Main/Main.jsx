@@ -11,7 +11,6 @@ function Main({ weatherData, clothingItems, onCardClick }) {
 
   /* -------------------
      Normalize weather type
-     (ensure it's always "hot", "warm", or "cold")
   ------------------- */
   const normalizeWeatherType = (type) => {
     if (!type) return "warm"; 
@@ -26,8 +25,7 @@ function Main({ weatherData, clothingItems, onCardClick }) {
   const currentType = normalizeWeatherType(weatherData.type);
 
   /* -------------------
-     Filter clothing items by weather
-     Show all if type is unknown or no match
+     Filter clothing 
   ------------------- */
   const filteredItems = clothingItems.filter(
     (item) =>
@@ -59,11 +57,7 @@ function Main({ weatherData, clothingItems, onCardClick }) {
         <div className="clothing-section__grid">
           {filteredItems.length > 0 ? (
             filteredItems.map((item) => (
-              <ItemCard
-                key={item.id || item._id}
-                item={item}
-                onCardClick={onCardClick}
-              />
+              <ItemCard key={item.id} item={item} onCardClick={onCardClick} />
             ))
           ) : (
             <p className="clothing-section__empty">

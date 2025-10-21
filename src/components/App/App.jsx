@@ -47,6 +47,7 @@ function AppContent() {
   const [isHeaderPopupOpen, setIsHeaderPopupOpen] = useState(false);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [cardToDelete, setCardToDelete] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   /* -------------------
      Fetch Weather + Items on Mount
@@ -80,13 +81,15 @@ function AppContent() {
       weather: item.weather,
     };
 
+    setIsLoading(true);
     addItem(newItem)
       .then((savedItem) => {
         setClothingItems((prev) => [savedItem, ...prev]);
         resetForm();
         handleCloseModal();
       })
-      .catch((err) => console.error("Add item error:", err));
+      .catch((err) => console.error("Add item error:", err))
+      .finally(() => setIsLoading(false));
   }
 
   /* -------------------
@@ -102,16 +105,16 @@ function AppContent() {
   ------------------- */
   function handleCardDelete() {
     if (!cardToDelete) return;
-    const id = cardToDelete._id || cardToDelete.id;
+  const id = cardToDelete.id;
+    setIsLoading(true);
     deleteItem(id)
       .then(() => {
-        setClothingItems((prev) =>
-          prev.filter((item) => item._id !== id && item.id !== id)
-        );
+  setClothingItems((prev) => prev.filter((item) => item.id !== id));
         setCardToDelete(null);
         handleCloseModal();
       })
-      .catch((err) => console.error("Delete item error:", err));
+      .catch((err) => console.error("Delete item error:", err))
+      .finally(() => setIsLoading(false));
   }
 
 
@@ -165,13 +168,19 @@ function AppContent() {
           <Route
             path="/"
             element={
-              weatherData && (
-                <Main
-                  weatherData={weatherData}
-                  clothingItems={clothingItems}
-                  onCardClick={handleCardClick}
-                />
-              )
+              <Main
+                weatherData={
+                  weatherData || {
+                    temperature: { F: 0, C: 0 },
+                    city: "Loading...",
+                    type: "warm",
+                    condition: "",
+                    timeOfDay: "Day",
+                  }
+                }
+                clothingItems={clothingItems}
+                onCardClick={handleCardClick}
+              />
             }
           />
           <Route
@@ -193,6 +202,7 @@ function AppContent() {
           isOpen={activeModal === "addClothes"}
           onAddItem={handleAddItemSubmit}
           onCloseModal={handleCloseModal}
+          isLoading={isLoading}
         />
         <ItemModal
           isOpen={activeModal === "preview"}
@@ -204,6 +214,8 @@ function AppContent() {
           isOpen={activeModal === "confirmDelete"}
           onClose={handleCloseModal}
           onConfirm={handleCardDelete}
+          isLoading={isLoading}
+          buttonText={isLoading ? "Deleting..." : undefined}
         />
       </div>
     </CurrentTemperatureUnitContext.Provider>
@@ -214,8 +226,15 @@ function AppContent() {
    Browser Wrapper
 ------------------- */
 function App() {
+  const rawBase = import.meta?.env?.BASE_URL;
+  const basename = import.meta.env.DEV
+    ? undefined
+    : rawBase && rawBase !== "/"
+    ? rawBase.replace(/\/$/, "")
+    : undefined;
+
   return (
-    <BrowserRouter basename="/se_project_react">
+    <BrowserRouter basename={basename}>
       <AppContent />
     </BrowserRouter>
   );

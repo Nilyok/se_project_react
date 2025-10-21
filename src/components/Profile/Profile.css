@@ -8,7 +8,7 @@
   max-width: 1360px;
   margin: 0 auto;
   padding-top: 47px;
-  padding-bottom: 160px;
+  padding-bottom: 0;
 }
 
 /* -------------------
@@ -43,10 +43,10 @@
 .profile__content {
   margin-left: 166px;
   width: 1015px;
-  height: 676px;
   display: flex;
   flex-direction: column;
   padding-top: 16px;
+  padding-bottom: 80px; /* ensures footer is 80px below the last content (photos) */
 }
 
 .profile__header-row {
@@ -91,11 +91,11 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   justify-items: center;
-  margin-bottom: 80px;
+  margin-bottom: 0; /* spacing controlled by profile__content padding-bottom */
 }
 
 /* -------------------
-   Sidebar - Visually Hidden but in DOM
+   Sidebar - Visually (since we use profile)
 ------------------- */
 .profile__sidebar-visible {
   position: absolute !important;
@@ -179,7 +179,6 @@
     display: block;
   }
 
-    /* Keep sidebar hidden on mobile too */
   .profile__sidebar-visible {
     position: absolute !important;
     left: -9999px !important;

@@ -2,7 +2,7 @@ import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
 
 function ClothesSection({ clothingItems, onCardClick, onDelete }) {
-  const visibleItems = clothingItems.slice(0, 6);
+  const visibleItems = clothingItems;
 
   return (
     <div className="clothes-section">

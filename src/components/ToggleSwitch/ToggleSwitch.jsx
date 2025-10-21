@@ -17,7 +17,7 @@ function ToggleSwitch() {
   const [imagesLoaded, setImagesLoaded] = React.useState(false);
 
   /* -------------------
-     Preload all images
+    Preload all images
   ------------------- */
   React.useEffect(() => {
     const imageUrls = [toggleF, toggleHover, toggleMove, toggleC];
@@ -36,14 +36,14 @@ function ToggleSwitch() {
   }, []);
 
   /* -------------------
-     Default image
+    Default image
   ------------------- */
   const [currentImage, setCurrentImage] = React.useState(
     currentTemperatureUnit === "C" ? toggleC : toggleF,
   );
 
   /* -------------------
-     Update image when interaction
+    Update image when interaction
   ------------------- */
   React.useEffect(() => {
     if (!imagesLoaded) return;

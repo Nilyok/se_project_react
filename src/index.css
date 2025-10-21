@@ -1,6 +1,6 @@
-/* ===================================
-   Fonts
-=================================== */
+/* -------------------
+  Fonts
+------------------- */
 @font-face {
   font-family: "Cabinet Grotesk";
   src: url("./assets/fonts/CabinetGrotesk/CabinetGrotesk-Bold.woff2")
@@ -17,9 +17,9 @@
   font-style: normal;
 }
 
-/* ===================================
-   Root Variables
-=================================== */
+/* -------------------
+  Root Variables
+------------------- */
 :root {
   --font-main: "Cabinet Grotesk", Arial, sans-serif;
   --color-primary: #000;
@@ -27,9 +27,10 @@
   --color-bg: #f5f5f5;
 }
 
-/* ===================================
-   Reset
-=================================== */
+/* -------------------
+  Reset
+------------------- */
+
 *,
 *::before,
 *::after {
@@ -63,9 +64,9 @@ button {
   cursor: pointer;
 }
 
-/* ===================================
-   Global Layout
-=================================== */
+/* -------------------
+  Global Layout
+------------------- */
 body {
   font-family: var(--font-main);
   background: var(--color-bg);
@@ -114,11 +115,10 @@ body {
   margin: 0;
 }
 
-/* ===================================
-   Responsive Layout
-=================================== */
+/* -------------------
+   Mobile
+------------------- */
 
-/* Mobile */
 @media (max-width: 768px) {
   .main {
     margin-bottom: 40px;

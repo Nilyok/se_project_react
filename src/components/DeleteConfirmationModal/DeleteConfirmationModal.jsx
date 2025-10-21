@@ -1,7 +1,7 @@
 import "./DeleteConfirmationModal.css";
 import closeIcon from "../../images/Delete-Button-Close.svg";
 
-function DeleteConfirmationModal({ isOpen, onClose, onConfirm }) {
+function DeleteConfirmationModal({ isOpen, onClose, onConfirm, isLoading, buttonText }) {
   if (!isOpen) return null;
 
   return (
@@ -33,8 +33,12 @@ function DeleteConfirmationModal({ isOpen, onClose, onConfirm }) {
 
         {/* Buttons */}
         <div className="modal__buttons">
-          <button className="modal__confirm-btn" onClick={onConfirm}>
-            Yes, delete item
+          <button
+            className="modal__confirm-btn"
+            onClick={onConfirm}
+            disabled={isLoading}
+          >
+            {buttonText ? buttonText : "Yes, delete item"}
           </button>
           <button className="modal__cancel-btn" onClick={onClose}>
             Cancel

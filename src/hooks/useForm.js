@@ -1,13 +1,13 @@
 import { useState } from "react";
 
 /* -------------------
-     Custom Hook: useForm
+  Custom Hook: useForm
 ------------------- */
 export const useForm = (initialValues = {}) => {
   const [values, setValues] = useState(initialValues);
 
   /* -------------------
-       Handle Change
+    Handle Change
   ------------------- */
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,7 +15,7 @@ export const useForm = (initialValues = {}) => {
   };
 
   /* -------------------
-       Reset Form
+    Reset Form
   ------------------- */
   const resetForm = () => {
     setValues(initialValues);

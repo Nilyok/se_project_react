@@ -1,13 +1,7 @@
 /* -------------------
    Normalize Single Item
 ------------------- */
-export const normalizeItem = (item) => ({
-  _id: item.id, 
-  id: item.id,  
-  name: item.name,
-  weather: item.weather,
-  imageUrl: item.imageUrl,
-});
+export const normalizeItem = (item) => item;
 
 /* -------------------
    Normalize Array of Items

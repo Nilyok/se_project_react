@@ -2,7 +2,7 @@ import "./AddItemModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../hooks/useForm";
 
-const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
+const AddItemModal = ({ isOpen, onAddItem, onCloseModal, isLoading }) => {
   const { values, handleChange, resetForm } = useForm({
     name: "",
     imageUrl: "",
@@ -29,7 +29,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
       onClose={onCloseModal}
       name="add-garment"
       title="New garment"
-      buttonText="Add garment"
+      buttonText={isLoading ? "Saving..." : "Add garment"}
       onSubmit={handleSubmit}
       isSubmitDisabled={
         !values.name.trim() || !values.imageUrl.trim() || !values.weather.trim()
