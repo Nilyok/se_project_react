@@ -4,7 +4,7 @@ import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
-function Main({ weatherData, clothingItems, onCardClick }) {
+function Main({ weatherData, clothingItems, onCardClick, onCardLike }) {
   const { currentTemperatureUnit } = React.useContext(
     CurrentTemperatureUnitContext,
   );
@@ -57,7 +57,12 @@ function Main({ weatherData, clothingItems, onCardClick }) {
         <div className="clothing-section__grid">
           {filteredItems.length > 0 ? (
             filteredItems.map((item) => (
-              <ItemCard key={item.id} item={item} onCardClick={onCardClick} />
+              <ItemCard
+                key={item._id}
+                item={item}
+                onCardClick={onCardClick}
+                onCardLike={onCardLike}
+              />
             ))
           ) : (
             <p className="clothing-section__empty">

@@ -1,7 +1,6 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { getWeather } from "../../utils/weatherApi";
+import { BrowserRouter, Routes, Route, useLocation, Navigate, useNavigate } from "react-router-dom";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -10,7 +9,20 @@ import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/ItemModal";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal";
-import { getItems, addItem, deleteItem } from "../../utils/api";
+import {
+  getItems,
+  addItem,
+  deleteItem,
+  addCardLike,
+  removeCardLike,
+} from "../../utils/api";
+import { checkToken, authorize, register as authRegister } from "../../utils/auth";
+import LoginModal from "../LoginModal/LoginModal";
+import RegisterModal from "../RegisterModal/RegisterModal";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { updateUser } from "../../utils/api";
+import EditProfilePopup from "../EditProfilePopup/EditProfilePopup";
+import { getWeather } from "../../utils/weatherApi";
 
 /* -------------------
    AppHeader Component 
@@ -48,21 +60,146 @@ function AppContent() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [cardToDelete, setCardToDelete] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [isSavingProfile, setIsSavingProfile] = useState(false);
+
+
 
   /* -------------------
      Fetch Weather + Items on Mount
   ------------------- */
+
   useEffect(() => {
+  getItems()
+    .then((items) => setClothingItems(items))
+    .catch((err) => console.error("Error loading items:", err));
+  }, []);
+
+    useEffect(() => {
     getWeather()
       .then((data) => setWeatherData(data))
       .catch((err) => console.error(err));
   }, []);
 
+  /* -------------------
+    Token Validation on App Load
+  ------------------- */
   useEffect(() => {
-    getItems()
-      .then((items) => setClothingItems(items))
-      .catch((err) => console.error("Error loading items:", err));
+    const token = window.localStorage.getItem("jwt");
+
+    if (!token) return;
+
+    checkToken(token)
+      .then((userData) => {
+        setCurrentUser(userData);
+      })
+      .catch((err) => {
+        console.log("Token invalid:", err);
+        window.localStorage.removeItem("jwt");
+      });
   }, []);
+
+    /* -------------------
+      Handle Logout
+    ------------------- */
+
+  const handleLogout = () => {
+    window.localStorage.removeItem("jwt");
+    setCurrentUser(null);
+  };
+    /* -------------------
+      Handle Card like/unlike
+    ------------------- */
+  const handleCardLike = (item) => {
+  const token = window.localStorage.getItem("jwt");
+  if (!token) return;
+
+  const isLiked = item.likes?.some(
+    (id) => id === currentUser?._id
+  );
+
+  const request = !isLiked
+    ? addCardLike(item._id, token)
+    : removeCardLike(item._id, token);
+
+  request
+    .then((updatedCard) => {
+      setClothingItems((cards) =>
+        cards.map((card) =>
+          card._id === item._id ? updatedCard : card
+        )
+      );
+    })
+    .catch((err) => console.error("Like error:", err));
+  };
+
+      /* -------------------
+      Edit Profile
+    ------------------- */
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+
+  function handleEditProfileClick() {
+  setIsEditProfilePopupOpen(true);
+}
+
+    /* -------------------
+      Update User Info
+    ------------------- */
+const handleUpdateUser = ({ name, avatar }) => {
+  const token = window.localStorage.getItem("jwt");
+  setIsSavingProfile(true);
+
+  return updateUser({ name, avatar }, token)
+    .then((updatedUser) => {
+      setCurrentUser(updatedUser);
+      handleCloseModal();
+    })
+    .catch((err) => {
+      console.error("Update user error:", err.message || err);
+    })
+    .finally(() => setIsSavingProfile(false));
+};
+
+  /* -------------------
+    Handle Login / Register
+  ------------------- */
+  const navigate = useNavigate();
+
+  const handleLogin = ({ email, password }) => {
+    return authorize({ email, password })
+      .then((res) => {
+        if (res?.token) {
+          window.localStorage.setItem("jwt", res.token);
+          return checkToken(res.token);
+        }
+        return Promise.reject(new Error("No token received"));
+      })
+      .then((userData) => {
+        setCurrentUser(userData);
+        navigate("/profile");
+      })
+      .catch((err) => console.error("Login failed:", err));
+  };
+
+  const handleRegister = ({ name, avatar, email, password }) => {
+    return authRegister({ name, avatar, email, password })
+      .then(() => authorize({ email, password }))
+      .then((res) => {
+        if (res?.token) {
+          window.localStorage.setItem("jwt", res.token);
+          return checkToken(res.token);
+        }
+        return Promise.reject(new Error("No token received after register"));
+      })
+      .then((userData) => {
+        setCurrentUser(userData);
+        navigate("/profile");
+      })
+      .catch((err) => console.error("Registration failed:", err));
+  };
+
+
+
 
   /* -------------------
      Toggle °F/°C
@@ -75,6 +212,8 @@ function AppContent() {
      Add New Item 
   ------------------- */
   function handleAddItemSubmit(item, resetForm) {
+    const token = window.localStorage.getItem("jwt");
+
     const newItem = {
       name: item.name,
       imageUrl: item.imageUrl,
@@ -82,7 +221,7 @@ function AppContent() {
     };
 
     setIsLoading(true);
-    addItem(newItem)
+    addItem(newItem, token)
       .then((savedItem) => {
         setClothingItems((prev) => [savedItem, ...prev]);
         resetForm();
@@ -105,11 +244,12 @@ function AppContent() {
   ------------------- */
   function handleCardDelete() {
     if (!cardToDelete) return;
-  const id = cardToDelete.id;
+  const token = window.localStorage.getItem("jwt");
+  const id = cardToDelete._id;
     setIsLoading(true);
-    deleteItem(id)
+    deleteItem(id, token)
       .then(() => {
-  setClothingItems((prev) => prev.filter((item) => item.id !== id));
+  setClothingItems((prev) => prev.filter((item) => item._id !== id));
         setCardToDelete(null);
         handleCloseModal();
       })
@@ -131,11 +271,11 @@ function AppContent() {
     setActiveModal("preview");
   }
 
-  function handleCloseModal() {
-    setActiveModal("");
-    setSelectedCard(null);
-  }
-
+function handleCloseModal() {
+  setActiveModal("");
+  setSelectedCard(null);
+  setIsEditProfilePopupOpen(false);
+}
   /* -------------------
      Escape Close
   ------------------- */
@@ -156,68 +296,104 @@ function AppContent() {
         handleToggleSwitchChange,
       }}
     >
-      <div className="page">
-        <AppHeader
-          weatherData={weatherData}
-          onAddClothesClick={handleAddClothesClick}
-          isHeaderPopupOpen={isHeaderPopupOpen}
-          setIsHeaderPopupOpen={setIsHeaderPopupOpen}
-        />
-
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Main
-                weatherData={
-                  weatherData || {
-                    temperature: { F: 0, C: 0 },
-                    city: "Loading...",
-                    type: "warm",
-                    condition: "",
-                    timeOfDay: "Day",
+      <CurrentUserContext.Provider value={currentUser}>
+        <div className="page">
+          <AppHeader
+            weatherData={weatherData}
+            onAddClothesClick={handleAddClothesClick}
+            isHeaderPopupOpen={isHeaderPopupOpen}
+            setIsHeaderPopupOpen={setIsHeaderPopupOpen}
+          />
+          <main className="main">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  weatherData={
+                    weatherData || {
+                      temperature: { F: 0, C: 0 },
+                      city: "Loading...",
+                      type: "warm",
+                      condition: "",
+                      timeOfDay: "Day",
+                    }
                   }
-                }
-                clothingItems={clothingItems}
-                onCardClick={handleCardClick}
-              />
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <Profile
-                clothingItems={clothingItems}
-                onAddClothesClick={handleAddClothesClick}
-                onCardClick={handleCardClick}
-                onDelete={openDeleteConfirmation}
-              />
-            }
-          />
-        </Routes>
+                  clothingItems={clothingItems}
+                  onCardClick={handleCardClick}
+                  onCardLike={handleCardLike}
+                />
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <LoginModal
+                  isOpen={true}
+                  onClose={() => navigate("/")}
+                  onLogin={handleLogin}
+                />
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <RegisterModal
+                  isOpen={true}
+                  onClose={() => navigate("/")}
+                  onRegister={handleRegister}
+                />
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                currentUser ? (
+                  <Profile
+                    clothingItems={clothingItems}
+                    onAddClothesClick={handleAddClothesClick}
+                    onCardClick={handleCardClick}
+                    onDelete={openDeleteConfirmation}
+                    onLogout={handleLogout}
+                    onEditProfile={handleEditProfileClick}
+                  />
+                ) : (
+                  <Navigate to="/" replace />
+                )
+              }
+            />
+            </Routes>
+          </main>
 
-        <Footer />
+          <Footer />
 
-        <AddItemModal
-          isOpen={activeModal === "addClothes"}
-          onAddItem={handleAddItemSubmit}
-          onCloseModal={handleCloseModal}
-          isLoading={isLoading}
-        />
-        <ItemModal
-          isOpen={activeModal === "preview"}
-          onClose={handleCloseModal}
-          card={selectedCard}
-          onDelete={() => openDeleteConfirmation(selectedCard)}
-        />
-        <DeleteConfirmationModal
-          isOpen={activeModal === "confirmDelete"}
-          onClose={handleCloseModal}
-          onConfirm={handleCardDelete}
-          isLoading={isLoading}
-          buttonText={isLoading ? "Deleting..." : undefined}
-        />
-      </div>
+          <AddItemModal
+            isOpen={activeModal === "addClothes"}
+            onAddItem={handleAddItemSubmit}
+            onCloseModal={handleCloseModal}
+            isLoading={isLoading}
+          />
+          <ItemModal
+            isOpen={activeModal === "preview"}
+            onClose={handleCloseModal}
+            card={selectedCard}
+            onDelete={() => openDeleteConfirmation(selectedCard)}
+          />
+          <DeleteConfirmationModal
+            isOpen={activeModal === "confirmDelete"}
+            onClose={handleCloseModal}
+            onConfirm={handleCardDelete}
+            isLoading={isLoading}
+            buttonText={isLoading ? "Deleting..." : undefined}
+          />
+          <EditProfilePopup
+            isOpen={isEditProfilePopupOpen}
+            onClose={handleCloseModal}
+            onUpdateUser={handleUpdateUser}
+            isLoading={isSavingProfile}
+          />
+        </div>
+      </CurrentUserContext.Provider>  
     </CurrentTemperatureUnitContext.Provider>
   );
 }
@@ -241,3 +417,4 @@ function App() {
 }
 
 export default App;
+

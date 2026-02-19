@@ -1,8 +1,14 @@
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+
 
 function ClothesSection({ clothingItems, onCardClick, onDelete }) {
-  const visibleItems = clothingItems;
+  const currentUser = useContext(CurrentUserContext);
+  const visibleItems = clothingItems.filter(
+  (item) => item.owner === currentUser?._id
+);
 
   return (
     <div className="clothes-section">
@@ -10,7 +16,7 @@ function ClothesSection({ clothingItems, onCardClick, onDelete }) {
         {visibleItems.length > 0 ? (
           visibleItems.map((item) => (
             <ItemCard
-              key={item.id}
+              key={item._id}
               item={item}
               onCardClick={() => onCardClick(item)}
               onDelete={() => onDelete(item)}

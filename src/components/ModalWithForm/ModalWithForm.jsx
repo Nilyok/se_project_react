@@ -11,7 +11,7 @@ function ModalWithForm({
   buttonText,
   onSubmit,
   children,
-  isSubmitDisabled,
+  isLoading,
   onDelete,
 }) {
   /* -------------------
@@ -34,9 +34,14 @@ function ModalWithForm({
       <form className="modal__form" name={name} onSubmit={onSubmit}>
         {children}
         {buttonText && (
-          <button type="submit" className="modal__submit" disabled={isSubmitDisabled}>
-            {buttonText}
-          </button>
+<button
+  type="submit"
+  className="modal__submit"
+  disabled={isLoading}
+>
+  {buttonText}
+</button>
+
         )}
       </form>
     </Modal>

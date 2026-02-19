@@ -3,8 +3,19 @@ import SideBar from "./SideBar";
 import avatar from "../../images/User-Avartar-Header.png";
 import addNewIcon from "../../images/Profile-AddNew.svg";
 import ClothesSection from "./ClothesSection";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function Profile({ clothingItems, onAddClothesClick, onCardClick, onDelete }) {
+function Profile({
+  clothingItems,
+  onAddClothesClick,
+  onCardClick,
+  onDelete,
+  onLogout,
+  onEditProfile  
+}) {
+  const currentUser = useContext(CurrentUserContext);
+
   return (
     <section className="profile">
       <div className="profile__sidebar-visible">
@@ -15,13 +26,29 @@ function Profile({ clothingItems, onAddClothesClick, onCardClick, onDelete }) {
           Main Profile Section (Left)
       ------------------- */}
       <div className="profile__user">
-        <img src={avatar} alt="User Avatar" className="profile__avatar" />
+        <img
+          src={currentUser?.avatar || avatar}
+          alt="User Avatar"
+          className="profile__avatar"
+        />
 
         <div className="profile__info">
-          <p className="profile__username">Terrence Tegegne</p>
-          <p className="profile__tagline">Change profile data</p>
-          <p className="profile__logout">Log out</p>
-        </div>
+          <p className="profile__username">
+            {currentUser ? currentUser.name : "Guest"}
+          </p>
+          <p
+            className="profile__edit"
+            onClick={onEditProfile}
+          >
+            Edit profile
+          </p>
+          <p
+            className="profile__logout"
+            onClick={onLogout}
+          >
+            Log out
+          </p>
+                  </div>
       </div>
 
       {/* -------------------

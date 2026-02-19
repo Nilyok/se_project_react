@@ -6,6 +6,12 @@ import mobileBtn from "../../images/Mobile-Avatar-Button.svg";
 import mobileClose from "../../images/Mobile-Close-Button.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+
+/* -------------------
+  Header component
+------------------- */
 
 function Header({
   location,
@@ -14,9 +20,11 @@ function Header({
   onOpenPopup,
   onClosePopup,
   variant,
-}) {
+})
+ {
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const currentUser = useContext(CurrentUserContext);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
@@ -65,32 +73,49 @@ function Header({
       {/* -------------------
           Desktop right side
       ------------------- */}
-      {variant !== "profile" && (
-        <div className="header__right">
-          <ToggleSwitch />
-          <button
-            type="button"
-            className="header__add-btn"
-            onClick={() => {
-              onAddClothesClick();
-              onClosePopup();
-            }}
-          >
-            + Add Clothes
-          </button>
-          <div className="header__user">
-            <Link to="/profile" className="header__username">
-              Terrence Tegegne
+      <div className="header__right">
+        <ToggleSwitch />
+
+        {currentUser ? (
+          <>
+            <button
+              type="button"
+              className="header__add-btn"
+              onClick={() => {
+                onAddClothesClick();
+                onClosePopup();
+              }}
+            >
+              + Add Clothes
+            </button>
+
+            <div className="header__user">
+              <Link to="/profile" className="header__username">
+                {currentUser.name}
+              </Link>
+              <img
+                src={currentUser.avatar || avatar}
+                alt="User Avatar"
+                className="header__avatar"
+              />
+            </div>
+          </>
+        ) : (
+          <div className="header__auth-buttons">
+            <Link to="/login" className="header__login-btn">
+              Log in
             </Link>
-            <img src={avatar} alt="User Avatar" className="header__avatar" />
+            <Link to="/register" className="header__register-btn">
+              Sign up
+            </Link>
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
       {/* -------------------
           Mobile popup
       ------------------- */}
-      {isPopupOpen && (
+      {isPopupOpen && currentUser && (
         <div className="header__overlay" onClick={onClosePopup}>
           <div
             className="header__popup header__popup--open"
@@ -112,9 +137,9 @@ function Header({
               }}
               style={{ cursor: "pointer" }}
             >
-              <p className="header__popup-username">Terrence Tegegne</p>
+              <p className="header__popup-username">{currentUser?.name}</p>
               <img
-                src={avatar}
+                src={currentUser?.avatar || avatar}
                 alt="User Avatar"
                 className="header__popup-avatar"
               />
