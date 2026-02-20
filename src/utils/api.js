@@ -86,21 +86,3 @@ export const updateUser = (userData, token) => {
 };
 
 
-/* -------------------
-   PATCH - Register, Login, Check Token
-------------------- */
-
-export const authorize = (data) => {
-  return request(`${baseUrl}/signin`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  });
-};
-
-export const getUser = (token) => {
-  return request(`${baseUrl}/users/me`, {
-    headers: { authorization: `Bearer ${token}` },
-  });
-};
-

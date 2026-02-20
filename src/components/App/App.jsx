@@ -325,26 +325,58 @@ function handleCloseModal() {
                 />
               }
             />
-            <Route
-              path="/login"
-              element={
-                <LoginModal
-                  isOpen={true}
-                  onClose={() => navigate("/")}
-                  onLogin={handleLogin}
-                />
-              }
-            />
-            <Route
-              path="/register"
-              element={
-                <RegisterModal
-                  isOpen={true}
-                  onClose={() => navigate("/")}
-                  onRegister={handleRegister}
-                />
-              }
-            />
+              <Route
+                path="/login"
+                element={
+                  <>
+                    <Main
+                      weatherData={
+                        weatherData || {
+                          temperature: { F: 0, C: 0 },
+                          city: "Loading...",
+                          type: "warm",
+                          condition: "",
+                          timeOfDay: "Day",
+                        }
+                      }
+                      clothingItems={clothingItems}
+                      onCardClick={handleCardClick}
+                      onCardLike={handleCardLike}
+                    />
+                    <LoginModal
+                      isOpen={true}
+                      onClose={() => navigate(-1)}
+                      onLogin={handleLogin}
+                    />
+                  </>
+                }
+              />
+              <Route
+                path="/register"
+                element={
+                  <>
+                    <Main
+                      weatherData={
+                        weatherData || {
+                          temperature: { F: 0, C: 0 },
+                          city: "Loading...",
+                          type: "warm",
+                          condition: "",
+                          timeOfDay: "Day",
+                        }
+                      }
+                      clothingItems={clothingItems}
+                      onCardClick={handleCardClick}
+                      onCardLike={handleCardLike}
+                    />
+                    <RegisterModal
+                      isOpen={true}
+                      onClose={() => navigate(-1)}
+                      onRegister={handleRegister}
+                    />
+                  </>
+                }
+              />
             <Route
               path="/profile"
               element={
