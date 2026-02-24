@@ -1,14 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function LoginModal({ isOpen, onClose, onLogin }) {
+function LoginModal({ isOpen, onClose, onLogin, onSwitch, error }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const isFormValid = email.trim() && password.trim();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onLogin({ email, password });
   };
+
+  useEffect(() => {
+    if (!isOpen) {
+      setEmail("");
+      setPassword("");
+    }
+  }, [isOpen]);
 
   return (
     <ModalWithForm
@@ -18,21 +27,34 @@ function LoginModal({ isOpen, onClose, onLogin }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      isSubmitDisabled={!isFormValid}
+      onSwitch={onSwitch}
     >
-      <input
-        type="email"
-        placeholder="Email"
-        required
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        required
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+      <label className="modal__label">
+        Email*
+        <input
+          type="email"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </label>
+
+      <label className="modal__label">
+        Password*
+        <input
+          type="password"
+          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </label>
+
+      {error && (
+        <p className="modal__error">
+          {error}
+        </p>
+      )}
     </ModalWithForm>
   );
 }

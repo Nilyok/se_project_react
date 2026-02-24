@@ -16,8 +16,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 32px 40px 0;
-  height: 40px;
+  padding: 32px 40px;
   max-width: 1440px;
   margin: 0 auto;
   width: 100%;
@@ -32,11 +31,6 @@
   gap: 24px;
 }
 
-.header__logo {
-  width: 89px;
-  height: 40px;
-}
-
 .header__logo-block {
   display: flex;
   align-items: center;
@@ -44,10 +38,12 @@
 }
 
 .header__date-location {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
   font-size: 20px;
   line-height: 24px;
   color: #000;
-  padding-top: 11px;
+  margin: 0;
 }
 
 /* -------------------
@@ -56,11 +52,12 @@
 .header__right {
   display: flex;
   align-items: center;
-  gap: 24px;
-  padding-top: 11px;
+  gap: 20px;
 }
 
 .header__add-btn {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
   font-size: 16px;
   line-height: 24px;
   color: #000;
@@ -70,6 +67,8 @@
 }
 
 .header__user {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -89,13 +88,26 @@
   object-fit: cover;
 }
 
-.header__date-location,
-.header__add-btn,
-.header__username {
+.header__login-btn,
+.header__register-btn {
   font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
+  letter-spacing: 0;
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.header__register-btn {
+  padding-left: 20px;
+}
+
+
+.header__login-btn:hover,
+.header__register-btn:hover {
+  opacity: 0.6;
 }
 
 /* -------------------
@@ -152,6 +164,7 @@
   .header__right {
     display: none;
   }
+  
 
   /* -------------------
      Popup

@@ -14,6 +14,11 @@
   position: absolute;
 }
 
+.modal__info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 /* -------------------
    Preview Modal (Delete Button + Layout)
 ------------------- */
@@ -69,7 +74,7 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
-  padding-left: 32px;
+  /* padding-left: 32px; */
 }
 
 .modal__title {
@@ -107,5 +112,10 @@
 
   .modal__caption {
     padding: 20px;
+  }
+
+  .modal__info {
+    padding-bottom: 16px;
+    gap: 0px;
   }
 }

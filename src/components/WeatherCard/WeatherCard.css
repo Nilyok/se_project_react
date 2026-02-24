@@ -11,15 +11,13 @@
 /* -------------------
    Weather Card
 ------------------- */
-.weather-card {
-  max-width: 1360px;
-  width: 100%;
-  height: 80px;
-  margin: 40px auto 0;
-  position: relative;
-  overflow: hidden;
-  border-radius: 12px;
-}
+.weather-card { 
+  max-width: 1360px; 
+  width: 100%; height: 80px; 
+  margin: 40px auto 0; 
+  position: relative; 
+  overflow: hidden; 
+  border-radius: 12px; }
 
 .weather-card__background {
   width: 100%;

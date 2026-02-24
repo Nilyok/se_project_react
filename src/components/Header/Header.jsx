@@ -1,17 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Header.css";
-import logo from "../../images/Logo-Header.svg";
+import logo from "../../images/Logo-Header.png";
 import avatar from "../../images/User-Avartar-Header.png";
 import mobileBtn from "../../images/Mobile-Avatar-Button.svg";
 import mobileClose from "../../images/Mobile-Close-Button.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link, useNavigate } from "react-router-dom";
-import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-
-/* -------------------
-  Header component
-------------------- */
 
 function Header({
   location,
@@ -20,8 +15,9 @@ function Header({
   onOpenPopup,
   onClosePopup,
   variant,
-})
- {
+  onLoginClick,
+  onRegisterClick,
+}) {
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const currentUser = useContext(CurrentUserContext);
@@ -47,9 +43,7 @@ function Header({
 
   return (
     <header className={headerClasses}>
-      {/* -------------------
-          Left side (logo + date)
-      ------------------- */}
+      {/* LEFT */}
       <div className="header__left">
         <Link to="/" className="header__logo-link">
           <img src={logo} alt="WTWR logo" className="header__logo" />
@@ -59,9 +53,7 @@ function Header({
         </p>
       </div>
 
-      {/* -------------------
-          Mobile button
-      ------------------- */}
+      {/* MOBILE BUTTON */}
       <button
         type="button"
         className="header__mobile-btn"
@@ -70,9 +62,7 @@ function Header({
         <img src={mobileBtn} alt="Menu" />
       </button>
 
-      {/* -------------------
-          Desktop right side
-      ------------------- */}
+      {/* RIGHT SIDE */}
       <div className="header__right">
         <ToggleSwitch />
 
@@ -102,19 +92,26 @@ function Header({
           </>
         ) : (
           <div className="header__auth-buttons">
-            <Link to="/login" className="header__login-btn">
-              Log in
-            </Link>
-            <Link to="/register" className="header__register-btn">
-              Sign up
-            </Link>
+            <button
+              type="button"
+              className="header__login-btn"
+              onClick={onLoginClick}
+            >
+              Login
+            </button>
+
+            <button
+              type="button"
+              className="header__register-btn"
+              onClick={onRegisterClick}
+            >
+              Signup
+            </button>
           </div>
         )}
       </div>
 
-      {/* -------------------
-          Mobile popup
-      ------------------- */}
+      {/* MOBILE POPUP */}
       {isPopupOpen && currentUser && (
         <div className="header__overlay" onClick={onClosePopup}>
           <div

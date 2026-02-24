@@ -22,7 +22,7 @@ function Main({ weatherData, clothingItems, onCardClick, onCardLike }) {
     return "warm"; 
   };
 
-  const currentType = normalizeWeatherType(weatherData.type);
+  const currentType = normalizeWeatherType(weatherData?.type);
 
   /* -------------------
      Filter clothing 
@@ -39,19 +39,22 @@ function Main({ weatherData, clothingItems, onCardClick, onCardLike }) {
      Render
   ------------------- */
   return (
-    <main className="main">
+    <section className="main">
       <div className="weather-card-container">
-        <WeatherCard
-          temperature={weatherData.temperature}
-          condition={weatherData.condition}
-          timeOfDay={weatherData.timeOfDay}
-        />
+        {weatherData && (
+          <WeatherCard
+            temperature={weatherData.temperature}
+            condition={weatherData.condition}
+            timeOfDay={weatherData.timeOfDay}
+          />
+        )}
       </div>
 
       <section className="clothing-section">
         <p className="clothing-section__subtitle">
-          Today is {weatherData.temperature[currentTemperatureUnit]}°
-          {currentTemperatureUnit} / You may want to wear:
+          {weatherData
+            ? `Today is ${weatherData.temperature[currentTemperatureUnit]}°${currentTemperatureUnit} / You may want to wear:`
+            : "Loading weather..."}
         </p>
 
         <div className="clothing-section__grid">
@@ -71,7 +74,7 @@ function Main({ weatherData, clothingItems, onCardClick, onCardLike }) {
           )}
         </div>
       </section>
-    </main>
+    </section>
   );
 }
 

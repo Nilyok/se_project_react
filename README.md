@@ -27,7 +27,15 @@ It retrieves live weather data using the OpenWeather API, categorizes the temper
 
 ---
 
-## 🚀 Features
+## � Backend Repository
+
+**Backend GitHub Repository:** [se_project_api](https://github.com/Nilyok/se_project_api) *(public)*
+
+The backend API must be running for this application to function. Ensure the repository is public and follow the backend setup instructions.
+
+---
+
+## �🚀 Features
 
 ```bash
 - 🌤 **Real-Time Weather:** Fetches current data by latitude & longitude

@@ -4,11 +4,17 @@
 .profile {
   display: flex;
   align-items: flex-start;
-  width: 100%;
+  gap: 116px; /* spacing between left & right */
   max-width: 1360px;
   margin: 0 auto;
-  padding-top: 47px;
-  padding-bottom: 0;
+  padding-top: 72px;
+}
+
+.profile__info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
 }
 
 /* -------------------
@@ -16,9 +22,9 @@
 ------------------- */
 .profile__user {
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 12px;
+  align-items: flex-start;
+  gap: 20px;
+  width: 250px;
 }
 
 .profile__avatar {
@@ -32,21 +38,42 @@
   font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-weight: 700;
   font-size: 20px;
-  line-height: 100%;
+  line-height: 24px;
   color: #000;
-  white-space: nowrap;
+}
+
+
+/* -------------------
+   Sidebar Layout
+------------------- */
+
+.profile__sidebar {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile__top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.profile__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 /* -------------------
    Right Section (Title + Add button + Cards)
 ------------------- */
 .profile__content {
-  margin-left: 166px;
-  width: 1015px;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  padding-top: 16px;
-  padding-bottom: 80px; 
+  padding-bottom: 80px;
 }
 
 .profile__header-row {
@@ -78,9 +105,19 @@
   object-fit: contain;
 }
 
-.profile__tagline,
+.profile__edit,
 .profile__logout {
-  display: none;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  cursor: pointer;
+  color: #000;
+}
+
+.profile__edit:hover,
+.profile__logout:hover {
+  opacity: 0.6;
 }
 
 /* -------------------
@@ -98,17 +135,16 @@
    Sidebar - Visually (since we use profile)
 ------------------- */
 .profile__sidebar-visible {
-  position: absolute !important;
-  left: -9999px !important;
-  top: -9999px !important;
-  width: 1px !important;
-  height: 1px !important;
-  overflow: hidden !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
-
 
 
 /* -------------------

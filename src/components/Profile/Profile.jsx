@@ -25,30 +25,35 @@ function Profile({
       {/* -------------------
           Main Profile Section (Left)
       ------------------- */}
-      <div className="profile__user">
-        <img
-          src={currentUser?.avatar || avatar}
-          alt="User Avatar"
-          className="profile__avatar"
-        />
-
-        <div className="profile__info">
+      <div className="profile__sidebar">
+        {/* Top Row */}
+        <div className="profile__top">
+          <img
+            src={currentUser?.avatar || avatar}
+            alt="User Avatar"
+            className="profile__avatar"
+          />
           <p className="profile__username">
             {currentUser ? currentUser.name : "Guest"}
           </p>
+        </div>
+
+        {/* Bottom Actions */}
+        <div className="profile__actions">
           <p
             className="profile__edit"
             onClick={onEditProfile}
           >
-            Edit profile
+            Change profile data
           </p>
+
           <p
             className="profile__logout"
             onClick={onLogout}
           >
             Log out
           </p>
-                  </div>
+        </div>
       </div>
 
       {/* -------------------
