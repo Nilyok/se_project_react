@@ -5,7 +5,6 @@ import Modal from "../Modal/Modal";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-
 function ItemModal({ isOpen, onClose, card, onDelete }) {
   const currentUser = useContext(CurrentUserContext);
   if (!card) return null;
@@ -29,9 +28,7 @@ function ItemModal({ isOpen, onClose, card, onDelete }) {
       <div className="modal__caption-row">
         <div className="modal__info">
           <p className="modal__title">{card.name}</p>
-          <p className="modal__weather">
-            Weather: {card.weather}
-          </p>
+          <p className="modal__weather">Weather: {card.weather}</p>
         </div>
 
         {isOwn && (

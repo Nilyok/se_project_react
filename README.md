@@ -24,12 +24,11 @@ It retrieves live weather data using the OpenWeather API, categorizes the temper
 
 **Figma:** [Sprint 11: WTWR Design](https://www.figma.com/design/dQLJwEKasIdspciJAJrCaf/Sprint-11_-WTWR?node-id=311-433&t=DCTuwMrtagL4uoFg-1)
 
-
 ---
 
 ## � Backend Repository
 
-**Backend GitHub Repository:** [se_project_api](https://github.com/Nilyok/se_project_api) *(public)*
+**Backend GitHub Repository:** [se_project_api](https://github.com/Nilyok/se_project_api) _(public)_
 
 The backend API must be running for this application to function. Ensure the repository is public and follow the backend setup instructions.
 
@@ -73,22 +72,5 @@ The backend API must be running for this application to function. Ensure the rep
  ┣ 📄 index.css          → Global styles
  ┗ 📄 main.jsx           → Application entry point
 
-
-⚙️ Setup Your Own WTWR
-
-1️⃣ Clone the repository
-git clone https://github.com/<your-username>/se_project_react.git
-cd se_project_react
-
-2️⃣ Install dependencies
-npm install
-
-3️⃣ Start JSON Server (for db.json)
-npx json-server --watch db.json --port 3001
-
-4️⃣ Start the development server
-npm run dev
-
-5️⃣ Open the app
-Visit http://localhost:5173 in your browser.
+---
 ```

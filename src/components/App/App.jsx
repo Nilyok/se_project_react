@@ -79,20 +79,15 @@ function AppContent() {
   const [isSavingProfile, setIsSavingProfile] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
-    useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [authError, setAuthError] = useState("");
   const [isAuthLoading, setIsAuthLoading] = useState(true);
 
   /* ------------------- INITIAL LOAD ------------------- */
   useEffect(() => {
-    getItems()
-      .then(setClothingItems)
-      .catch(console.error);
+    getItems().then(setClothingItems).catch(console.error);
 
-    getWeather()
-      .then(setWeatherData)
-      .catch(console.error);
+    getWeather().then(setWeatherData).catch(console.error);
   }, []);
 
   /* ------------------- TOKEN CHECK ------------------- */
@@ -189,14 +184,14 @@ function AppContent() {
     request
       .then((updatedCard) => {
         setClothingItems((cards) =>
-          cards.map((c) => (c._id === item._id ? updatedCard : c))
+          cards.map((c) => (c._id === item._id ? updatedCard : c)),
         );
       })
       .catch((err) => {
         console.error("Like failed:", err);
         // Optional: show toast / set error state
       });
-    };
+  };
 
   /* ------------------- ADD ITEM ------------------- */
   const handleAddItemSubmit = (item, resetForm) => {
@@ -206,7 +201,7 @@ function AppContent() {
     addItem(item, token)
       .then((saved) => {
         setClothingItems((prev) => [saved, ...prev]);
-        resetForm();            // ✅ keep this
+        resetForm(); // ✅ keep this
         setActiveModal("");
       })
       .catch((err) => {
@@ -223,7 +218,9 @@ function AppContent() {
 
     deleteItem(cardToDelete._id, token)
       .then(() => {
-        setClothingItems((prev) => prev.filter((i) => i._id !== cardToDelete._id));
+        setClothingItems((prev) =>
+          prev.filter((i) => i._id !== cardToDelete._id),
+        );
         setActiveModal("");
       })
       .catch((err) => {
@@ -287,9 +284,7 @@ function AppContent() {
                         setActiveModal("confirmDelete");
                       }}
                       onLogout={handleLogout}
-                      onEditProfile={() =>
-                        setIsEditProfilePopupOpen(true)
-                      }
+                      onEditProfile={() => setIsEditProfilePopupOpen(true)}
                     />
                   ) : (
                     <Navigate to="/" replace />

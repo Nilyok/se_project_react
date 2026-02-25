@@ -21,16 +21,16 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
     onUpdateUser({ name, avatar });
   }
 
-    return (
-      <ModalWithForm
-        title="Change profile data"
-        isOpen={isOpen}
-        onClose={onClose}
-        onSubmit={handleSubmit}
-        buttonText={isLoading ? "Saving..." : "Save changes"}
-        isLoading={isLoading}
-        name="edit-profile"  
-      >
+  return (
+    <ModalWithForm
+      title="Change profile data"
+      isOpen={isOpen}
+      onClose={onClose}
+      onSubmit={handleSubmit}
+      buttonText={isLoading ? "Saving..." : "Save changes"}
+      isLoading={isLoading}
+      name="edit-profile"
+    >
       <label className="modal__label">
         Name *
         <input

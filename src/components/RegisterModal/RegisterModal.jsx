@@ -9,19 +9,15 @@ function RegisterModal({ isOpen, onClose, onRegister, onSwitch }) {
   const [error, setError] = useState("");
 
   const isFormValid =
-    name.trim() &&
-    avatar.trim() &&
-    email.trim() &&
-    password.trim();
+    name.trim() && avatar.trim() && email.trim() && password.trim();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setError(""); // clear previous error
-    
-    onRegister({ name, avatar, email, password })
-      .catch(() => {
-        setError("Registration failed. Please try again.");
-      });
+
+    onRegister({ name, avatar, email, password }).catch(() => {
+      setError("Registration failed. Please try again.");
+    });
   };
 
   return (
@@ -79,11 +75,7 @@ function RegisterModal({ isOpen, onClose, onRegister, onSwitch }) {
           value={avatar}
           onChange={(e) => setAvatar(e.target.value)}
         />
-        {error && (
-          <p className="modal__error">
-            {error}
-          </p>
-        )}
+        {error && <p className="modal__error">{error}</p>}
       </label>
     </ModalWithForm>
   );

@@ -13,13 +13,13 @@ function Main({ weatherData, clothingItems, onCardClick, onCardLike }) {
      Normalize weather type
   ------------------- */
   const normalizeWeatherType = (type) => {
-    if (!type) return "warm"; 
+    if (!type) return "warm";
     const lower = type.toLowerCase();
 
     if (["hot", "sunny", "clear"].includes(lower)) return "hot";
     if (["warm", "mild", "clouds"].includes(lower)) return "warm";
     if (["cold", "snow", "rain"].includes(lower)) return "cold";
-    return "warm"; 
+    return "warm";
   };
 
   const currentType = normalizeWeatherType(weatherData?.type);
@@ -33,7 +33,6 @@ function Main({ weatherData, clothingItems, onCardClick, onCardLike }) {
       !["hot", "warm", "cold"].includes(currentType) ||
       item.weather.toLowerCase() === currentType,
   );
-
 
   /* -------------------
      Render

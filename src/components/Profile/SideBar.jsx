@@ -6,7 +6,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function SideBar({ onAddClothesClick }) {
   const currentUser = useContext(CurrentUserContext);
-  
+
   return (
     <div className="sidebar">
       <div className="sidebar__row">
@@ -27,7 +27,4 @@ function SideBar({ onAddClothesClick }) {
   );
 }
 
-
 export default SideBar;
-
-

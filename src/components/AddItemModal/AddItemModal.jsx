@@ -19,7 +19,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal, isLoading }) => {
         imageUrl: values.imageUrl.trim(),
         weather: values.weather,
       },
-      resetForm
+      resetForm,
     );
   };
 

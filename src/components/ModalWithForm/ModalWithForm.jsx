@@ -12,7 +12,7 @@ function ModalWithForm({
   onSubmit,
   children,
   isSubmitDisabled = false,
-  onSwitch
+  onSwitch,
 }) {
   /* -------------------
      Close on ESC
@@ -31,11 +31,7 @@ function ModalWithForm({
         <h2 className="modal__title">{title}</h2>
 
         {name === "preview" && (
-          <button
-            type="button"
-            className="modal__delete"
-            onClick={onSwitch}
-          >
+          <button type="button" className="modal__delete" onClick={onSwitch}>
             Delete item
           </button>
         )}

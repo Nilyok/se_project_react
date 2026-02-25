@@ -112,7 +112,7 @@ function Header({
       </div>
 
       {/* MOBILE POPUP */}
-      {isPopupOpen && currentUser && (
+      {isPopupOpen && (
         <div className="header__overlay" onClick={onClosePopup}>
           <div
             className="header__popup header__popup--open"
@@ -126,37 +126,65 @@ function Header({
               <img src={mobileClose} alt="Close" />
             </button>
 
-            <div
-              className="header__popup-line"
-              onClick={() => {
-                onClosePopup();
-                navigate("/profile");
-              }}
-              style={{ cursor: "pointer" }}
-            >
-              <p className="header__popup-username">{currentUser?.name}</p>
-              <img
-                src={currentUser?.avatar || avatar}
-                alt="User Avatar"
-                className="header__popup-avatar"
-              />
-            </div>
+            {currentUser ? (
+              <>
+                <div
+                  className="header__popup-line"
+                  onClick={() => {
+                    onClosePopup();
+                    navigate("/profile");
+                  }}
+                  style={{ cursor: "pointer" }}
+                >
+                  <p className="header__popup-username">{currentUser.name}</p>
+                  <img
+                    src={currentUser.avatar || avatar}
+                    alt="User Avatar"
+                    className="header__popup-avatar"
+                  />
+                </div>
 
-            <button
-              type="button"
-              className="header__popup-add-btn"
-              onClick={() => {
-                onAddClothesClick();
-                onClosePopup();
-              }}
-            >
-              + Add Clothes
-            </button>
+                <button
+                  type="button"
+                  className="header__popup-add-btn"
+                  onClick={() => {
+                    onAddClothesClick();
+                    onClosePopup();
+                  }}
+                >
+                  + Add Clothes
+                </button>
 
-            {variant === "profile" && (
-              <div className="header__popup-temp">
-                <ToggleSwitch />
-              </div>
+                {variant === "profile" && (
+                  <div className="header__popup-temp">
+                    <ToggleSwitch />
+                  </div>
+                )}
+              </>
+            ) : (
+              <>
+                <button
+                  type="button"
+                  className="header__popup-add-btn"
+                  onClick={() => {
+                    onLoginClick();
+                    onClosePopup();
+                  }}
+                >
+                  Login
+                </button>
+
+                <button
+                  type="button"
+                  className="header__popup-add-btn"
+                  onClick={() => {
+                    onRegisterClick();
+                    onClosePopup();
+                  }}
+                >
+                  Signup
+                </button>
+              </>
             )}
           </div>
         </div>

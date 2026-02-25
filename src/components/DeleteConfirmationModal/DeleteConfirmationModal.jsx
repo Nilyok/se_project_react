@@ -1,7 +1,13 @@
 import "./DeleteConfirmationModal.css";
 import closeIcon from "../../images/Delete-Button-Close.svg";
 
-function DeleteConfirmationModal({ isOpen, onClose, onConfirm, isLoading, buttonText }) {
+function DeleteConfirmationModal({
+  isOpen,
+  onClose,
+  onConfirm,
+  isLoading,
+  buttonText,
+}) {
   if (!isOpen) return null;
 
   return (

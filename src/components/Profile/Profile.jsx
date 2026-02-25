@@ -12,7 +12,7 @@ function Profile({
   onCardClick,
   onDelete,
   onLogout,
-  onEditProfile  
+  onEditProfile,
 }) {
   const currentUser = useContext(CurrentUserContext);
 
@@ -40,17 +40,11 @@ function Profile({
 
         {/* Bottom Actions */}
         <div className="profile__actions">
-          <p
-            className="profile__edit"
-            onClick={onEditProfile}
-          >
+          <p className="profile__edit" onClick={onEditProfile}>
             Change profile data
           </p>
 
-          <p
-            className="profile__logout"
-            onClick={onLogout}
-          >
+          <p className="profile__logout" onClick={onLogout}>
             Log out
           </p>
         </div>

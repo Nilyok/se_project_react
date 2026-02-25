@@ -16,11 +16,10 @@ function request(url, options) {
    GET - Fetch all clothing items
 ------------------- */
 export const getItems = () => {
-  return request(`${baseUrl}/items`)
-    .catch((err) => {
-      console.error("Fetch GET error:", err);
-      throw err;
-    });
+  return request(`${baseUrl}/items`).catch((err) => {
+    console.error("Fetch GET error:", err);
+    throw err;
+  });
 };
 
 /* -------------------
@@ -36,7 +35,6 @@ export const addItem = (item, token) => {
     body: JSON.stringify(item),
   });
 };
-
 
 /* -------------------
    DELETE - Remove ID
