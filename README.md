@@ -26,9 +26,10 @@ It retrieves live weather data using the OpenWeather API, categorizes the temper
 
 ---
 
-## � Backend Repository
+## 🔌 Backend Repository
 
-**Backend GitHub Repository:** [se_project_api](https://github.com/Nilyok/se_project_api) _(public)_
+**Backend GitHub Repository:**  
+[se_project_express](https://github.com/Nilyok/se_project_express)
 
 The backend API must be running for this application to function. Ensure the repository is public and follow the backend setup instructions.
 
