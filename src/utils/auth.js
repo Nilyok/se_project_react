@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3001";
+const baseUrl = "http://localhost:3002";
 
 const checkResponse = (res) =>
   res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
@@ -17,11 +17,11 @@ export const authorize = ({ email, password }) =>
     body: JSON.stringify({ email, password }),
   }).then(checkResponse);
 
-export const checkToken = (token) =>
-  fetch(`${baseUrl}/users/me`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
-  }).then(checkResponse);
+  export const checkToken = (token) =>
+    fetch(`${baseUrl}/users/me`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(checkResponse);

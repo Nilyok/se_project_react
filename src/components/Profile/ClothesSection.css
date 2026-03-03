@@ -10,6 +10,11 @@
   transition: background 0.3s;
 }
 
+.clothes-section__empty {
+  grid-column: 1 / -1;  
+  justify-self: start;    
+  text-align: left;
+}
 .clothes-section__more:hover {
   background: rgba(0, 0, 0, 0.05);
 }

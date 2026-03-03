@@ -4,10 +4,9 @@
 .profile {
   display: flex;
   align-items: flex-start;
-  gap: 116px; /* spacing between left & right */
-  max-width: 1360px;
-  margin: 0 auto;
-  padding-top: 72px;
+  gap: 80px;
+  width: 100%;
+  padding: 72px 40px;
 }
 
 .profile__info {
@@ -22,9 +21,8 @@
 ------------------- */
 .profile__user {
   display: flex;
-  align-items: flex-start;
+  align-items: center;   /* ✅ center vertically */
   gap: 20px;
-  width: 250px;
 }
 
 .profile__avatar {
@@ -48,8 +46,6 @@
 
 .profile__sidebar {
   width: 250px;
-  display: flex;
-  flex-direction: column;
 }
 
 .profile__top {
@@ -70,16 +66,12 @@
 ------------------- */
 .profile__content {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 80px;
 }
 
 .profile__header-row {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 16px;
+  padding-top: 14px;
 }
 
 .profile__title {
@@ -127,7 +119,8 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   justify-items: center;
-  margin-bottom: 0; /* spacing controlled by profile__content padding-bottom */
+  margin-bottom: 0;
+  padding-top: 20px;
 }
 
 /* -------------------

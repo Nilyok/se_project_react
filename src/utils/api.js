@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3001";
+const baseUrl = "http://localhost:3002";
 
 export function checkResponse(res) {
   if (!res.ok) {

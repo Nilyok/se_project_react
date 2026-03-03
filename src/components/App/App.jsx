@@ -124,7 +124,7 @@ function AppContent() {
       .then((userData) => {
         setCurrentUser(userData);
         setIsLoginOpen(false);
-        navigate("/profile");
+        navigate("/");
       })
       .catch((err) => {
         console.error("Login failed:", err);
@@ -134,19 +134,25 @@ function AppContent() {
   };
 
   const handleRegister = ({ name, avatar, email, password }) => {
+    setAuthError("");
+
     return authRegister({ name, avatar, email, password })
-      .then(() => authorize({ email, password }))
+      .then(() => authorize({ email, password })) // auto-login after signup
       .then((res) => {
-        if (!res?.token) throw new Error("No token");
+        if (!res?.token) throw new Error("No token received");
         window.localStorage.setItem("jwt", res.token);
         return checkToken(res.token);
       })
       .then((userData) => {
         setCurrentUser(userData);
-        setIsRegisterOpen(false);
-        navigate("/profile");
+        setIsRegisterOpen(false); // close modal
+        navigate("/");            // go home
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.error("Register failed:", err);
+        setAuthError("Registration failed. Please try again.");
+        throw err; // IMPORTANT: keep promise chain so RegisterModal can show error too
+      });
   };
 
   const handleLogout = () => {
@@ -189,7 +195,6 @@ function AppContent() {
       })
       .catch((err) => {
         console.error("Like failed:", err);
-        // Optional: show toast / set error state
       });
   };
 
@@ -206,7 +211,6 @@ function AppContent() {
       })
       .catch((err) => {
         console.error("Add item failed:", err);
-        // Optional: setModalError("Failed to add item")
       })
       .finally(() => setIsLoading(false));
   };
@@ -254,15 +258,21 @@ function AppContent() {
               <Route
                 path="/"
                 element={
-                  <Main
-                    weatherData={weatherData}
-                    clothingItems={clothingItems}
-                    onCardClick={(item) => {
-                      setSelectedCard(item);
-                      setActiveModal("preview");
-                    }}
-                    onCardLike={handleCardLike}
-                  />
+                  isAuthLoading ? (
+                    <div>Loading...</div>
+                  ) : currentUser ? (
+                    <Main
+                      weatherData={weatherData}
+                      clothingItems={clothingItems}
+                      onCardClick={(item) => {
+                        setSelectedCard(item);
+                        setActiveModal("preview");
+                      }}
+                      onCardLike={handleCardLike}
+                    />
+                  ) : (
+                    <Navigate to="/" replace />
+                  )
                 }
               />
 

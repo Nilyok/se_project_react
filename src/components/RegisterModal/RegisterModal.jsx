@@ -13,6 +13,7 @@ function RegisterModal({ isOpen, onClose, onRegister, onSwitch }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("SUBMIT FIRED");
     setError(""); // clear previous error
 
     onRegister({ name, avatar, email, password }).catch(() => {
