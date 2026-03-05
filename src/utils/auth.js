@@ -1,7 +1,15 @@
 const baseUrl = "http://localhost:3001";
 
-const checkResponse = (res) =>
-  res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+const checkResponse = async (res) => {
+  const text = await res.text();
+  const data = text ? JSON.parse(text) : {};
+
+  if (!res.ok) {
+    return Promise.reject(data);
+  }
+
+  return data;
+};
 
 export const register = ({ name, avatar, email, password }) =>
   fetch(`${baseUrl}/signup`, {

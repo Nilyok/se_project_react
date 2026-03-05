@@ -59,7 +59,7 @@ function Header({
         className="header__mobile-btn"
         onClick={onOpenPopup}
       >
-        <img src={mobileBtn} alt="Menu" />
+        <img src={mobileBtn} className="header__mobile-icon" alt="Menu" />
       </button>
 
       {/* RIGHT SIDE */}
@@ -94,18 +94,18 @@ function Header({
           <div className="header__auth-buttons">
             <button
               type="button"
-              className="header__login-btn"
-              onClick={onLoginClick}
-            >
-              Login
-            </button>
-
-            <button
-              type="button"
               className="header__register-btn"
               onClick={onRegisterClick}
             >
               Signup
+            </button>
+
+            <button
+              type="button"
+              className="header__login-btn"
+              onClick={onLoginClick}
+            >
+              Login
             </button>
           </div>
         )}

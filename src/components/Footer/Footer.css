@@ -33,6 +33,7 @@
 @media (max-width: 768px) {
   .footer {
     width: 343px;
-    margin: 0 16px 20px;
+    margin: 12px auto 32px;
+    padding: 0px;
   }
 }

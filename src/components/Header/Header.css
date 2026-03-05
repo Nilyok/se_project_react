@@ -90,7 +90,7 @@
   cursor: pointer;
 }
 
-.header__register-btn {
+.header__login-btn {
   padding-left: 20px;
 }
 
@@ -111,7 +111,7 @@
   .header {
     flex-direction: column;
     align-items: flex-start;
-    padding: 18px 16px 0;
+    padding: 10px 26px 0px;
     gap: 0;
     position: relative;
     z-index: 20;
@@ -191,6 +191,10 @@
     object-fit: cover;
   }
 
+  .header__mobile-btn {
+    right: 32px;
+  }
+
   .header__popup-add-btn {
     font-size: 20px;
     font-weight: 700;
@@ -252,8 +256,9 @@
   }
 
   .header.header--profile-mobile .header__date-location {
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 700;
     padding-top: 0;
     margin: 0;
   }

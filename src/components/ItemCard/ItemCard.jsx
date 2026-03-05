@@ -8,7 +8,9 @@ import likeIconActive from "../../images/like-icon_active.svg";
 function ItemCard({ item, onCardClick, onCardLike }) {
   const currentUser = useContext(CurrentUserContext);
 
-  const isLiked = item.likes?.some((id) => id === currentUser?._id);
+  const isLiked = item.likes?.some(
+    (id) => id === currentUser?._id || id?._id === currentUser?._id
+  );
 
   const handleLikeClick = (e) => {
     e.stopPropagation();

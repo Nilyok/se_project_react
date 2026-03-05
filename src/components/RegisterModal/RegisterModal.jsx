@@ -16,8 +16,8 @@ function RegisterModal({ isOpen, onClose, onRegister, onSwitch }) {
     console.log("SUBMIT FIRED");
     setError(""); // clear previous error
 
-    onRegister({ name, avatar, email, password }).catch(() => {
-      setError("Registration failed. Please try again.");
+    onRegister({ name, avatar, email, password }).catch((err) => {
+      setError(err?.message || "Registration failed. Please try again.");
     });
   };
 

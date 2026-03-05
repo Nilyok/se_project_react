@@ -1,7 +1,6 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import {
-  BrowserRouter,
   Routes,
   Route,
   useLocation,
@@ -116,9 +115,13 @@ function AppContent() {
 
     return authorize({ email, password })
       .then((res) => {
+
+        console.log("LOGIN RESPONSE:", res); // 🧪 DEBUG LINE
+
         if (!res?.token) throw new Error("No token");
 
         window.localStorage.setItem("jwt", res.token);
+
         return checkToken(res.token);
       })
       .then((userData) => {
@@ -129,7 +132,7 @@ function AppContent() {
       .catch((err) => {
         console.error("Login failed:", err);
         setAuthError("Email or password incorrect");
-        throw err; // keep promise chain intact
+        throw err;
       });
   };
 
@@ -137,21 +140,34 @@ function AppContent() {
     setAuthError("");
 
     return authRegister({ name, avatar, email, password })
-      .then(() => authorize({ email, password })) // auto-login after signup
+      .then(() => authorize({ email, password }))
       .then((res) => {
-        if (!res?.token) throw new Error("No token received");
+        if (!res?.token) {
+          throw new Error("Login failed after signup");
+        }
+
+        // save token
         window.localStorage.setItem("jwt", res.token);
-        return checkToken(res.token);
+
+        // try to get user info
+        return checkToken(res.token).catch(() => null);
       })
       .then((userData) => {
-        setCurrentUser(userData);
-        setIsRegisterOpen(false); // close modal
-        navigate("/");            // go home
+        if (userData) {
+          setCurrentUser(userData);
+        }
+
+        setIsRegisterOpen(false);
+        navigate("/");
       })
       .catch((err) => {
-        console.error("Register failed:", err);
-        setAuthError("Registration failed. Please try again.");
-        throw err; // IMPORTANT: keep promise chain so RegisterModal can show error too
+        console.error("REGISTER ERROR:", err);
+
+        if (err?.message === "User with this email already exists") {
+          setAuthError("Email already registered.");
+        } else {
+          setAuthError("Registration failed.");
+        }
       });
   };
 
@@ -258,21 +274,15 @@ function AppContent() {
               <Route
                 path="/"
                 element={
-                  isAuthLoading ? (
-                    <div>Loading...</div>
-                  ) : currentUser ? (
-                    <Main
-                      weatherData={weatherData}
-                      clothingItems={clothingItems}
-                      onCardClick={(item) => {
-                        setSelectedCard(item);
-                        setActiveModal("preview");
-                      }}
-                      onCardLike={handleCardLike}
-                    />
-                  ) : (
-                    <Navigate to="/" replace />
-                  )
+                  <Main
+                    weatherData={weatherData}
+                    clothingItems={clothingItems}
+                    onCardClick={(item) => {
+                      setSelectedCard(item);
+                      setActiveModal("preview");
+                    }}
+                    onCardLike={currentUser ? handleCardLike : () => {}}
+                  />
                 }
               />
 
@@ -366,11 +376,7 @@ function AppContent() {
 
 /* ------------------- WRAPPER ------------------- */
 function App() {
-  return (
-    <BrowserRouter>
-      <AppContent />
-    </BrowserRouter>
-  );
+  return <AppContent />;
 }
 
 export default App;

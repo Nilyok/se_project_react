@@ -8,7 +8,9 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 function ItemModal({ isOpen, onClose, card, onDelete }) {
   const currentUser = useContext(CurrentUserContext);
   if (!card) return null;
-  const isOwn = card?.owner === currentUser?._id;
+  const isOwn =
+  card?.owner === currentUser?._id ||
+  card?.owner?._id === currentUser?._id;
 
   return (
     <Modal
