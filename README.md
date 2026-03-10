@@ -28,6 +28,9 @@ https://www-magnum-cloud.duckdns.org
 ### Backend API
 https://api-magnum-cloud.duckdns.org
 
+### Backend endpoint example
+https://api-magnum-cloud.duckdns.org/items
+
 ---
 
 # 🎥 Demo

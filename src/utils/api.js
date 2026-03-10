@@ -1,4 +1,5 @@
-const baseUrl = "http://localhost:3001";
+const baseUrl = "https://api-magnum-cloud.duckdns.org";
+console.log("API baseUrl =", baseUrl);
 
 export function checkResponse(res) {
   if (!res.ok) {
