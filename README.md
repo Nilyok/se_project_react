@@ -1,77 +1,278 @@
-# 🧥 WTWR — What To Wear?
+# 🌤 WTWR — What To Wear?
 
 ![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-yellow?logo=javascript&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-blue?logo=css3&logoColor=white)
-![Status](https://img.shields.io/badge/Project-Complete-brightgreen)
+![Node.js](https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=white)
+![Express](https://img.shields.io/badge/Express.js-000000?logo=express&logoColor=white)
 
-🎥 [**Watch Project Pitch (Click!)**](https://drive.google.com/file/d/12tSrhbzfOoDGeTcuvFfMrZ7QL0BnNA0d/view?usp=sharing)
+🎓 **TripleTen Software Engineering Program**  
+📦 **WTWR Full-Stack Application — Projects 13, 14, 15**
 
-A weather-based clothing recommendation app built with React.  
-It fetches real-time weather data and suggests clothing items based on temperature and conditions.
+WTWR (**What To Wear?**) is a full-stack web application that helps users manage clothing items and decide what to wear based on weather conditions.
 
----
+The application includes:
 
-## 📌 About the Project
-
-WTWR (What To Wear?) helps users decide what to wear based on the day’s weather.  
-It retrieves live weather data using the OpenWeather API, categorizes the temperature into **hot**, **warm**, or **cold**, and displays relevant clothing recommendations.
-
----
-
-## 🎨 Design Reference
-
-**Figma:** [Sprint 11: WTWR Design](https://www.figma.com/design/dQLJwEKasIdspciJAJrCaf/Sprint-11_-WTWR?node-id=311-433&t=DCTuwMrtagL4uoFg-1)
+• A **React frontend**  
+• A **Node.js + Express backend API**  
+• A **MongoDB database**  
+• **JWT authentication and protected routes**  
+• **Cloud deployment with NGINX and PM2**
 
 ---
 
-## 🔌 Backend Repository
+# 🌐 Live Application
 
-**Backend GitHub Repository:**  
-[se_project_express](https://github.com/Nilyok/se_project_express)
+### Frontend
+https://www-magnum-cloud.duckdns.org
 
-The backend API must be running for this application to function. Ensure the repository is public and follow the backend setup instructions.
+### Backend API
+https://api-magnum-cloud.duckdns.org
 
 ---
 
-## �🚀 Features
+# 🎥 Demo
 
-```bash
-- 🌤 **Real-Time Weather:** Fetches current data by latitude & longitude
-- 👕 **Smart Recommendations:** Displays clothing items filtered by weather type
-- 🧾 **Item Management:** Add, preview, and delete clothing items via modals
-- 🪟 **Responsive UI:** Works seamlessly on both desktop and mobile
-- ⚙️ **API Integration:** Uses JSON Server and OpenWeather for mock + live data
+Backend API Walkthrough
+
+https://www.loom.com/share/cedb848c6e6f4595a3b2b40e2e0ab635
+
+---
+
+# 🧠 Project Overview
+
+This project was developed across **three sprints** in the TripleTen Software Engineering Program.
+
+| Project | Focus | Description |
+|-------|-------|-------------|
+| **Project 13** | Backend | Built REST API with authentication and authorization |
+| **Project 14** | Frontend | Developed React UI with API integration |
+| **Project 15** | Deployment | Deployed application to a cloud server |
+
+Together these components form a **production-style full-stack application**.
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+- React
+- Vite
+- JavaScript (ES6+)
+- CSS Modules
+- REST API integration
+
+## Backend
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT Authentication
+- bcrypt password hashing
+
+## Deployment
+- Google Cloud Virtual Machine
+- NGINX reverse proxy
+- PM2 process manager
+- DuckDNS domain
+
+---
+
+# 🔐 Authentication System
+
+Users can:
+
+• Sign up  
+• Log in securely  
+• Receive a **JWT token valid for 7 days**
+
+Protected routes require:
+
+```
+Authorization: Bearer <token>
+```
+
+Authentication protects:
+
+• profile routes  
+• clothing item creation  
+• item deletion  
+
+---
+
+# 👕 Clothing Item Management
+
+Users can manage clothing items including:
+
+• Creating clothing items  
+• Viewing clothing items  
+• Deleting clothing items  
+
+Ownership protection ensures:
+
+✔ Only the **owner of a clothing item** can delete it.
+
+---
+
+# 📦 API Endpoints
+
+## Public Routes
+
+| Method | Endpoint | Description |
+|------|------|-------------|
+POST | `/signup` | Register a new user |
+POST | `/signin` | Login and receive JWT |
+GET | `/items` | Get clothing items |
+
+---
+
+## Protected Routes
+
+Require authentication.
+
+| Method | Endpoint | Description |
+|------|------|-------------|
+GET | `/users/me` | Get current user profile |
+PATCH | `/users/me` | Update user profile |
+POST | `/items` | Create clothing item |
+DELETE | `/items/:id` | Delete clothing item (owner only) |
+
+---
+
+# 🗄 Database
+
+The project uses **MongoDB** with **Mongoose schemas**.
+
+Collections include:
+
+• users  
+• clothingItems  
+
+Local database connection:
+
+```
+mongodb://localhost:27017/wtwr_db
 ```
 
 ---
 
-## 🛠️ Tech Stack
+# ⚙ Running the Project Locally
 
-| Category               | Tools                                             |
-| ---------------------- | ------------------------------------------------- |
-| **Frontend Framework** | React (Functional Components, Hooks, Context API) |
-| **Styling**            | CSS3, Flexbox, Grid, BEM Methodology              |
-| **Language**           | JavaScript (ES6+)                                 |
-| **Build Tool**         | Vite                                              |
-| **API Services**       | JSON Server (Mock API), OpenWeather API           |
+## 1️⃣ Clone repositories
 
----
+Frontend
 
-## 🧩 Project Structure
-
-```bash
-📂 src/
- ┣ 📁 components/        → Header, Main, Footer, Modals, Profile, etc.
- ┣ 📁 contexts/          → React Context for temperature unit
- ┣ 📁 hooks/             → Custom React hooks (useForm)
- ┣ 📁 utils/             → Constants, weatherApi.js, api.js
- ┣ 📁 vendor/            → normalize.css and fonts
- ┣ 📁 assets/            → Font and image assets
- ┣ 📁 images/            → Icons and weather images
- ┣ 📄 index.css          → Global styles
- ┗ 📄 main.jsx           → Application entry point
-
----
 ```
+git clone https://github.com/Nilyok/se_project_react.git
+```
+
+Backend
+
+```
+git clone https://github.com/Nilyok/se_project_express.git
+```
+
+---
+
+## 2️⃣ Install dependencies
+
+Frontend
+
+```
+npm install
+```
+
+Backend
+
+```
+npm install
+```
+
+---
+
+## 3️⃣ Start MongoDB
+
+```
+mongod
+```
+
+---
+
+## 4️⃣ Start backend server
+
+```
+npm run dev
+```
+
+Backend server runs on:
+
+```
+http://localhost:3001
+```
+
+---
+
+## 5️⃣ Start frontend
+
+```
+npm run dev
+```
+
+Frontend runs on:
+
+```
+http://localhost:3000
+```
+
+---
+
+# 🚀 Deployment (Project 15)
+
+The WTWR application is deployed using:
+
+• **Google Cloud Virtual Machine**  
+• **NGINX reverse proxy**  
+• **PM2 process manager**  
+• **DuckDNS domain**
+
+This allows the application to run continuously and be publicly accessible on the internet.
+
+---
+
+# 💡 Key Concepts Practiced
+
+| Concept | Description |
+|------|-------------|
+REST API Design | Structured API architecture |
+Authentication | JWT login system |
+Authorization | Protected routes |
+Database Modeling | MongoDB + Mongoose |
+Frontend Integration | React + API communication |
+Cloud Deployment | VM hosting with NGINX |
+Process Management | PM2 for server reliability |
+
+---
+
+# ✨ Reflection
+
+Through this project I learned how to build and deploy a **complete full-stack application**.
+
+Key skills gained include:
+
+• Building secure REST APIs  
+• Implementing JWT authentication  
+• Creating a React frontend with protected routes  
+• Connecting frontend and backend services  
+• Deploying applications to a cloud server  
+• Configuring NGINX and PM2 for production environments  
+
+This project represents a major step toward building **production-ready web applications**.
+
+---
+
+# 👨‍💻 Author
+
+Chanoknun **“Magnum”** Nilyok  
+
+TripleTen Software Engineering Program  
+
+Projects **13 • 14 • 15**
