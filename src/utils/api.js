@@ -31,7 +31,7 @@ export const addItem = (item, token) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(item),
   });
@@ -44,7 +44,7 @@ export const deleteItem = (id, token) => {
   return request(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {
-      authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   });
 };
@@ -56,7 +56,7 @@ export const addCardLike = (id, token) => {
   return request(`${baseUrl}/items/${id}/likes`, {
     method: "PUT",
     headers: {
-      authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   });
 };
@@ -65,7 +65,18 @@ export const removeCardLike = (id, token) => {
   return request(`${baseUrl}/items/${id}/likes`, {
     method: "DELETE",
     headers: {
-      authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+/* -------------------
+   GET - Current user
+------------------- */
+export const getUserInfo = (token) => {
+  return request(`${baseUrl}/users/me`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
     },
   });
 };
@@ -78,7 +89,7 @@ export const updateUser = (userData, token) => {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(userData),
   });
