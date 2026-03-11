@@ -3,7 +3,7 @@ import { useState } from "react";
 /* -------------------
   Custom Hook: useForm
 ------------------- */
-export const useForm = (initialValues = {}) => {
+export default function useForm(initialValues = {}) {
   const [values, setValues] = useState(initialValues);
 
   /* -------------------
@@ -21,5 +21,5 @@ export const useForm = (initialValues = {}) => {
     setValues(initialValues);
   };
 
-  return { values, handleChange, resetForm };
-};
+  return { values, handleChange, resetForm, setValues };
+}

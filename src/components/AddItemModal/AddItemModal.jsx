@@ -1,6 +1,6 @@
 import "./AddItemModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useForm } from "../../hooks/useForm";
+import useForm from "../../hooks/useForm";
 
 const AddItemModal = ({ isOpen, onAddItem, onCloseModal, isLoading }) => {
   const { values, handleChange, resetForm } = useForm({
@@ -11,6 +11,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal, isLoading }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (!values.name || !values.imageUrl || !values.weather) return;
 
     onAddItem(
@@ -19,7 +20,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal, isLoading }) => {
         imageUrl: values.imageUrl.trim(),
         weather: values.weather,
       },
-      resetForm,
+      resetForm
     );
   };
 
@@ -32,7 +33,9 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal, isLoading }) => {
       buttonText={isLoading ? "Saving..." : "Add garment"}
       onSubmit={handleSubmit}
       isSubmitDisabled={
-        !values.name.trim() || !values.imageUrl.trim() || !values.weather.trim()
+        !values.name.trim() ||
+        !values.imageUrl.trim() ||
+        !values.weather
       }
     >
       <label className="modal__label">
@@ -41,7 +44,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal, isLoading }) => {
           type="text"
           name="name"
           placeholder="Name"
-          value={values.name || ""}
+          value={values.name}
           onChange={handleChange}
           required
           autoComplete="off"
@@ -54,7 +57,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal, isLoading }) => {
           type="url"
           name="imageUrl"
           placeholder="Image URL"
-          value={values.imageUrl || ""}
+          value={values.imageUrl}
           onChange={handleChange}
           required
           autoComplete="off"
