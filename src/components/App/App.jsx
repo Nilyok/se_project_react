@@ -82,11 +82,19 @@ function AppContent() {
   const [authError, setAuthError] = useState("");
   const [isAuthLoading, setIsAuthLoading] = useState(true);
 
-  /* ------------------- INITIAL LOAD ------------------- */
+/* ------------------- INITIAL LOAD ------------------- */
   useEffect(() => {
-    getItems().then(setClothingItems).catch(console.error);
+    getItems()
+      .then(setClothingItems)
+      .catch((err) => {
+        console.error("Failed to load clothing items:", err);
+      });
 
-    getWeather().then(setWeatherData).catch(console.error);
+    getWeather()
+      .then(setWeatherData)
+      .catch((err) => {
+        console.error("Failed to load weather data:", err);
+      });
   }, []);
 
   /* ------------------- TOKEN CHECK ------------------- */
@@ -111,12 +119,12 @@ function AppContent() {
 
   /* ------------------- AUTH ------------------- */
   const handleLogin = ({ email, password }) => {
-    setAuthError(""); // clear previous error
+    setAuthError(""); 
 
     return authorize({ email, password })
       .then((res) => {
 
-        console.log("LOGIN RESPONSE:", res); // 🧪 DEBUG LINE
+        console.log("LOGIN RESPONSE:", res);
 
         if (!res?.token) throw new Error("No token");
 
@@ -188,6 +196,9 @@ function AppContent() {
       .then((updatedUser) => {
         setCurrentUser(updatedUser);
         setIsEditProfilePopupOpen(false);
+      })
+      .catch((err) => {
+        console.error("Profile update failed:", err);
       })
       .finally(() => setIsSavingProfile(false));
   };
@@ -305,6 +316,7 @@ function AppContent() {
                       }}
                       onLogout={handleLogout}
                       onEditProfile={() => setIsEditProfilePopupOpen(true)}
+                      onCardLike={handleCardLike}
                     />
                   ) : (
                     <Navigate to="/" replace />

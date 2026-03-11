@@ -1,22 +1,28 @@
 import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import useForm from "../../hooks/useForm";
 
 function RegisterModal({ isOpen, onClose, onRegister, onSwitch }) {
-  const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { values, handleChange } = useForm({
+    name: "",
+    avatar: "",
+    email: "",
+    password: "",
+  });
+
   const [error, setError] = useState("");
 
   const isFormValid =
-    name.trim() && avatar.trim() && email.trim() && password.trim();
+    values.name.trim() &&
+    values.avatar.trim() &&
+    values.email.trim() &&
+    values.password.trim();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("SUBMIT FIRED");
-    setError(""); // clear previous error
+    setError("");
 
-    onRegister({ name, avatar, email, password }).catch((err) => {
+    onRegister(values).catch((err) => {
       setError(err?.message || "Registration failed. Please try again.");
     });
   };
@@ -38,8 +44,8 @@ function RegisterModal({ isOpen, onClose, onRegister, onSwitch }) {
           type="email"
           name="email"
           required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={values.email}
+          onChange={handleChange}
         />
       </label>
 
@@ -49,8 +55,8 @@ function RegisterModal({ isOpen, onClose, onRegister, onSwitch }) {
           type="password"
           name="password"
           required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={values.password}
+          onChange={handleChange}
         />
       </label>
 
@@ -62,8 +68,8 @@ function RegisterModal({ isOpen, onClose, onRegister, onSwitch }) {
           minLength="2"
           maxLength="30"
           required
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={values.name}
+          onChange={handleChange}
         />
       </label>
 
@@ -73,8 +79,8 @@ function RegisterModal({ isOpen, onClose, onRegister, onSwitch }) {
           type="url"
           name="avatar"
           required
-          value={avatar}
-          onChange={(e) => setAvatar(e.target.value)}
+          value={values.avatar}
+          onChange={handleChange}
         />
         {error && <p className="modal__error">{error}</p>}
       </label>

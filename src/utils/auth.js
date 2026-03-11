@@ -1,16 +1,7 @@
+import { checkResponse } from "./api";
+
 const baseUrl =
   import.meta.env.VITE_API_URL || "http://localhost:3001";
-
-const checkResponse = async (res) => {
-  const text = await res.text();
-  const data = text ? JSON.parse(text) : {};
-
-  if (!res.ok) {
-    return Promise.reject(data);
-  }
-
-  return data;
-};
 
 export const register = ({ name, avatar, email, password }) =>
   fetch(`${baseUrl}/signup`, {
@@ -26,11 +17,11 @@ export const authorize = ({ email, password }) =>
     body: JSON.stringify({ email, password }),
   }).then(checkResponse);
 
-  export const checkToken = (token) =>
-    fetch(`${baseUrl}/users/me`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    }).then(checkResponse);
+export const checkToken = (token) =>
+  fetch(`${baseUrl}/users/me`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);

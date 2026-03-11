@@ -1,4 +1,5 @@
-const baseUrl = "https://api-magnum-cloud.duckdns.org";
+const baseUrl =
+  import.meta.env.VITE_API_URL || "http://localhost:3001";
 console.log("API baseUrl =", baseUrl);
 
 export function checkResponse(res) {
