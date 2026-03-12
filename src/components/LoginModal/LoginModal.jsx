@@ -3,7 +3,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import useForm from "../../hooks/useForm";
 
 function LoginModal({ isOpen, onClose, onLogin, onSwitch, error }) {
-  const { values, handleChange, setValues } = useForm({
+  const { values, handleChange, resetForm } = useForm({
     email: "",
     password: "",
   });
@@ -18,12 +18,9 @@ function LoginModal({ isOpen, onClose, onLogin, onSwitch, error }) {
 
   useEffect(() => {
     if (!isOpen) {
-      setValues({
-        email: "",
-        password: "",
-      });
+      resetForm();
     }
-  }, [isOpen, setValues]);
+  }, [isOpen, resetForm]);
 
   return (
     <ModalWithForm

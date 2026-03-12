@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import useForm from "../../hooks/useForm";
 
 function RegisterModal({ isOpen, onClose, onRegister, onSwitch }) {
-  const { values, handleChange } = useForm({
+  const { values, handleChange, resetForm } = useForm({
     name: "",
     avatar: "",
     email: "",
@@ -11,6 +11,13 @@ function RegisterModal({ isOpen, onClose, onRegister, onSwitch }) {
   });
 
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (isOpen) {
+      resetForm();
+      setError("");
+    }
+  }, [isOpen]);
 
   const isFormValid =
     values.name.trim() &&

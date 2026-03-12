@@ -10,6 +10,7 @@ function Profile({
   clothingItems,
   onAddClothesClick,
   onCardClick,
+  onCardLike,
   onDelete,
   onLogout,
   onEditProfile,
@@ -68,6 +69,7 @@ function Profile({
         <ClothesSection
           clothingItems={clothingItems}
           onCardClick={onCardClick}
+          onCardLike={onCardLike}
           onDelete={onDelete}
         />
       </div>
