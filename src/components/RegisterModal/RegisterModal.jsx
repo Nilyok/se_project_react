@@ -17,7 +17,7 @@ function RegisterModal({ isOpen, onClose, onRegister, onSwitch }) {
       resetForm();
       setError("");
     }
-  }, [isOpen]);
+  }, [isOpen, resetForm]);
 
   const isFormValid =
     values.name.trim() &&
