@@ -69,8 +69,8 @@ function Profile({
         <ClothesSection
           clothingItems={clothingItems}
           onCardClick={onCardClick}
-          onCardLike={onCardLike}
           onDelete={onDelete}
+          onCardLike={onCardLike}
         />
       </div>
     </section>
