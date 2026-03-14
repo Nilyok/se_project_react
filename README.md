@@ -8,7 +8,7 @@
 🎓 **TripleTen Software Engineering Program**  
 📦 **WTWR Full-Stack Application — Projects 13, 14, 15**
 
-WTWR (**What To Wear?**) is a full-stack web application that helps users manage clothing items and decide what to wear based on weather conditions.
+WTWR (**What To Wear?**) is a full-stack web application that helps users manage clothing items and decide what to wear based on the current weather.
 
 The application includes:
 
@@ -38,27 +38,29 @@ https://www.loom.com/share/f4b4075b788c46f7a7aeb449350e1c9a
 
 ---
 
+# 🌐 Live Demo
 
-# 🌐 Live Application
+### Frontend Application  
+https://magnum-cloud.duckdns.org
 
-### Frontend
-https://www-magnum-cloud.duckdns.org
-
-### Backend API
-https://api-magnum-cloud.duckdns.org
-
-### Backend endpoint example
-https://api-magnum-cloud.duckdns.org/items
+### Backend API  
+https://api.magnum-cloud.duckdns.org
 
 ---
 
-# 🎥 Demo
+# 🔗 Project Links
 
-Backend API Walkthrough
+### Frontend Application  
+🔗 https://magnum-cloud.duckdns.org
 
-https://www.loom.com/share/cedb848c6e6f4595a3b2b40e2e0ab635
+### Backend API  
+🔗 https://api.magnum-cloud.duckdns.org
+
+### Project Pitch Video  
+https://www.loom.com/share/f4b4075b788c46f7a7aeb449350e1c9a
 
 ---
+
 
 # 🧠 Project Overview
 
